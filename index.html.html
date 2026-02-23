@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuraHub | Premium Medical Concierge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-navy: #0A192F;
+            --luxury-gold: #D4AF37;
+            --gold-hover: #F3E5AB;
+            --white: #FFFFFF;
+            --light-gray: #F5F5F5;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--light-gray); color: #333; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+        /* Navbar Styling */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky; top: 0; z-index: 1000;
+        }
+        .navbar {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 2%; max-width: 1600px; margin: 0 auto;
+        }
+        .logo-container { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-img { height: 45px; width: auto; }
+        .logo-text { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--primary-navy); letter-spacing: 1px; }
+
+        .nav-links { list-style: none; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
+        .nav-links li a {
+            text-decoration: none; color: var(--primary-navy); font-weight: 500; font-size: 12px;
+            text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.3s ease; position: relative; padding: 5px 0;
+        }
+        .nav-links li a::after {
+            content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0;
+            background-color: var(--luxury-gold); transition: width 0.3s ease;
+        }
+        .nav-links li a:hover { color: var(--luxury-gold); }
+        .nav-links li a:hover::after { width: 100%; }
+
+        .lang-select {
+            padding: 6px 10px; border: 1px solid #ddd; border-radius: 4px;
+            background-color: transparent; font-family: 'Montserrat', sans-serif;
+            color: var(--primary-navy); cursor: pointer; outline: none; font-size: 13px;
+        }
+
+        /* Hero / Banner Section */
+        .hero {
+            min-height: 85vh;
+            background: linear-gradient(rgba(10, 25, 47, 0.7), rgba(10, 25, 47, 0.8)), url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2053&auto=format&fit=crop') center/cover;
+            display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px 20px;
+        }
+
+        .hero-content { max-width: 900px; color: var(--white); }
+        .hero-content h1 { font-size: 42px; margin-bottom: 15px; line-height: 1.3; color: var(--luxury-gold); }
+        .hero-content p { font-size: 16px; margin-bottom: 50px; line-height: 1.6; font-weight: 300; }
+
+        /* Beauty Selection Section */
+        .beauty-selection h3 {
+            font-size: 24px;
+            margin-bottom: 25px;
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn-category {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--luxury-gold);
+            color: var(--white);
+            padding: 15px 25px;
+            font-size: 14px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .btn-category:hover {
+            background: var(--luxury-gold);
+            color: var(--primary-navy);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <a href="#" class="logo-container">
+                <img src="image_c8fa02.png" alt="AuraHub Logo" class="logo-img">
+                <span class="logo-text">AuraHub</span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#plan" data-key="nav_plan">Plan Surgery Trip</a></li>
+                <li><a href="#doctor" data-key="nav_doctor">Find Doctor/Clinic</a></li>
+                <li><a href="#contact" data-key="nav_contact">Contact Us</a></li>
+                <li><a href="#ai" data-key="nav_ai">AI Aesthetic</a></li>
+                <li><a href="#promo" data-key="nav_promo">Promotions</a></li>
+                <li><a href="#interpreter" data-key="nav_interpreter">Interpreter</a></li>
+                <li><a href="#hotel" data-key="nav_hotel">Hotel Booking</a></li>
+                <li><a href="#transport" data-key="nav_transport">Transportation</a></li>
+            </ul>
+
+            <div class="lang-selector">
+                <select class="lang-select" id="languageSelect" onchange="changeLanguage()">
+                    <option value="en">EN</option>
+                    <option value="th">🇹🇭 TH</option>
+                    <option value="vn">🇻🇳 VN</option>
+                    <option value="mm">🇲🇲 MM</option>
+                    <option value="kh">🇰🇭 KH</option>
+                    <option value="la">🇱🇦 LA</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 data-key="hero_title">Ultimate Peace of Mind for Your Beauty Journey</h1>
+            <p data-key="hero_desc">Your exclusive personal concierge for premium aesthetic and surgery trips to Thailand. We manage the risks, you embrace the results.</p>
+            
+            <div class="beauty-selection">
+                <h3 data-key="select_beauty">Select Your Beauty</h3>
+                <div class="category-buttons">
+                    <button class="btn-category" data-key="cat_face">Face Surgery</button>
+                    <button class="btn-category" data-key="cat_body">Body Surgery</button>
+                    <button class="btn-category" data-key="cat_revision">Revision Surgery</button>
+                    <button class="btn-category" data-key="cat_antiaging">Anti-Aging & Skin</button>
+                    <button class="btn-category" data-key="cat_others">Others</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const translations = {
+            en: {
+                nav_plan: "Plan Surgery Trip", nav_doctor: "Find Doctor/Clinic", nav_contact: "Contact Us",
+                nav_ai: "AI Aesthetic", nav_promo: "Promotions", nav_interpreter: "Interpreter",
+                nav_hotel: "Hotel Booking", nav_transport: "Transportation",
+                hero_title: "Ultimate Peace of Mind for Your Beauty Journey",
+                hero_desc: "Your exclusive personal concierge for premium aesthetic and surgery trips to Thailand. We manage the risks, you embrace the results.",
+                select_beauty: "- Select Your Beauty -",
+                cat_face: "Face Surgery", cat_body: "Body Surgery", cat_revision: "Revision Surgery", cat_antiaging: "Anti-Aging & Skin", cat_others: "Others"
+            },
+            th: {
+                nav_plan: "วางแผนทริปศัลยกรรม", nav_doctor: "ค้นหาแพทย์/คลินิก", nav_contact: "ติดต่อเรา",
+                nav_ai: "ประเมินใบหน้าด้วย AI", nav_promo: "โปรโมชั่น", nav_interpreter: "บริการล่ามแปลภาษา",
+                nav_hotel: "บริการจองโรงแรม", nav_transport: "บริการรถรับส่ง",
+                hero_title: "ที่สุดแห่งความสบายใจ ในเส้นทางความงามของคุณ",
+                hero_desc: "ผู้ช่วยส่วนตัวระดับพรีเมียม สำหรับการเดินทางมาทำศัลยกรรมที่ประเทศไทย เราจัดการความเสี่ยงให้คุณ เพื่อผลลัพธ์ที่คุณคู่ควร",
+                select_beauty: "- เลือกความงามของคุณ -",
+                cat_face: "ศัลยกรรมใบหน้า", cat_body: "ศัลยกรรมรูปร่าง", cat_revision: "ศัลยกรรมงานแก้", cat_antiaging: "เวชศาสตร์ชะลอวัย", cat_others: "อื่นๆ"
+            },
+            vn: {
+                nav_plan: "Lên Kế Hoạch Phẫu Thuật", nav_doctor: "Tìm Bác Sĩ/Phòng Khám", nav_contact: "Liên Hệ",
+                nav_ai: "AI Thẩm Mỹ", nav_promo: "Khuyến Mãi", nav_interpreter: "Dịch Vụ Phiên Dịch",
+                nav_hotel: "Đặt Phòng Khách Sạn", nav_transport: "Dịch Vụ Đưa Đón",
+                hero_title: "Sự An Tâm Tuyệt Đối Cho Hành Trình Làm Đẹp Của Bạn",
+                hero_desc: "Trợ lý cá nhân cao cấp cho các chuyến đi phẫu thuật thẩm mỹ đến Thái Lan. Chúng tôi quản lý rủi ro, bạn chỉ cần tận hưởng kết quả.",
+                select_beauty: "- Chọn Dịch Vụ -",
+                cat_face: "Phẫu Thuật Khuôn Mặt", cat_body: "Phẫu Thuật Hình Thể", cat_revision: "Phẫu Thuật Chỉnh Sửa", cat_antiaging: "Trẻ Hóa & Da", cat_others: "Khác"
+            },
+            mm: {
+                nav_plan: "ခွဲစိတ်မှု အစီအစဉ်", nav_doctor: "ဆရာဝန်/ဆေးခန်း ရှာရန်", nav_contact: "ဆက်သွယ်ရန်",
+                nav_ai: "AI အလှအပ", nav_promo: "ပရိုမိုးရှင်းများ", nav_interpreter: "ဘာသာပြန် ဝန်ဆောင်မှု",
+                nav_hotel: "ဟိုတယ် ဘွတ်ကင်", nav_transport: "သယ်ယူပို့ဆောင်ရေး",
+                hero_title: "သင်၏ အလှအပ ခရီးစဉ်အတွက် အပြည့်အဝ စိတ်အေးချမ်းမှု",
+                hero_desc: "ထိုင်းနိုင်ငံသို့ အဆင့်မြင့် အလှအပ ခွဲစိတ်မှု ခရီးစဉ်များအတွက် သင်၏ သီးသန့် ကိုယ်ရေးကိုယ်တာ လက်ထောက်။",
+                select_beauty: "- သင့်အလှအပကို ရွေးချယ်ပါ -",
+                cat_face: "မျက်နှာ ခွဲစိတ်မှု", cat_body: "ခန္ဓာကိုယ် ခွဲစိတ်မှု", cat_revision: "ပြုပြင် ခွဲစိတ်မှု", cat_antiaging: "အိုမင်းရင့်ရော်မှု ဆန့်ကျင်ရေး", cat_others: "အခြား"
+            },
+            kh: {
+                nav_plan: "គម្រោងដំណើរកម្សាន្តវះកាត់", nav_doctor: "ស្វែងរកវេជ្ជបណ្ឌិត", nav_contact: "ទាក់ទងមកយើង",
+                nav_ai: "AI សោភ័ណភាព", nav_promo: "ការផ្សព្វផ្សាយ", nav_interpreter: "សេវាកម្មបកប្រែ",
+                nav_hotel: "ការកក់សណ្ឋាគារ", nav_transport: "សេវាកម្មដឹកជញ្ជូន",
+                hero_title: "ភាពស្ងប់ស្ងាត់ផ្លូវចិត្តបំផុត សម្រាប់ដំណើរស្វែងរកសម្រស់របស់អ្នក",
+                hero_desc: "ជំនួយការផ្ទាល់ខ្លួនផ្តាច់មុខរបស់អ្នក សម្រាប់ដំណើរវះកាត់កែសម្ផស្សកម្រិតខ្ពស់មកកាន់ប្រទេសថៃ។",
+                select_beauty: "- ជ្រើសរើសភាពស្រស់ស្អាតរបស់អ្នក -",
+                cat_face: "វះកាត់មុខ", cat_body: "វះកាត់រាងកាយ", cat_revision: "វះកាត់កែតម្រូវ", cat_antiaging: "ប្រឆាំងភាពចាស់ និងស្បែក", cat_others: "ផ្សេងទៀត"
+            },
+            la: {
+                nav_plan: "ວາງແຜນການຜ່າຕັດ", nav_doctor: "ຊອກຫາໝໍ/ຄລີນິກ", nav_contact: "ຕິດຕໍ່ພວກເຮົາ",
+                nav_ai: "AI ປະເມີນໃບໜ້າ", nav_promo: "ໂປຣໂມຊັນ", nav_interpreter: "ບໍລິການແປພາສາ",
+                nav_hotel: "ບໍລິການຈອງໂຮງແຮມ", nav_transport: "ບໍລິການລົດຮັບສົ່ງ",
+                hero_title: "ຄວາມສະບາຍໃຈສູງສຸດ ໃນເສັ້ນທາງຄວາມງາມຂອງທ່ານ",
+                hero_desc: "ຜູ້ຊ່ວຍສ່ວນຕົວລະດັບພຣີມຽມ ສຳລັບການເດີນທາງມາເຮັດສັນຍະກຳທີ່ປະເທດໄທ. ພວກເຮົາຈັດການຄວາມສ່ຽງໃຫ້ທ່ານ.",
+                select_beauty: "- ເລືອກຄວາມງາມຂອງທ່ານ -",
+                cat_face: "ສັນຍະກຳໃບໜ້າ", cat_body: "ສັນຍະກຳຮູບຮ່າງ", cat_revision: "ສັນຍະກຳງານແກ້", cat_antiaging: "ເວຊະສາດຊະລໍໄວ", cat_others: "ອື່ນໆ"
+            }
+        };
+
+        function changeLanguage() {
+            let lang = document.getElementById("languageSelect").value;
+            let elements = document.querySelectorAll("[data-key]");
+            
+            elements.forEach(element => {
+                let key = element.getAttribute("data-key");
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+        }
+    </script>
+</body>
+</html>
