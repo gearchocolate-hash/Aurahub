@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find Doctor/Clinic | AuraHub</title>
+    <title>Find Doctor | AuraHub Member Area</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
@@ -12,7 +12,6 @@
         :root {
             --primary-navy: #0A192F;
             --luxury-gold: #D4AF37;
-            --gold-hover: #F3E5AB;
             --white: #FFFFFF;
             --light-gray: #F5F7FA;
             --dark-gray: #333333;
@@ -26,24 +25,34 @@
         header { background-color: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
         .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; max-width: 1400px; margin: 0 auto; }
         .logo-container { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo-img { height: 45px; width: auto; }
-        .logo-text { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--primary-navy); letter-spacing: 1px; }
+        .logo-img { height: 45px; }
+        .logo-text { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--primary-navy); }
 
-        .search-section { background-color: var(--primary-navy); padding: 40px 20px; text-align: center; }
+        /* Tab ด้านบนที่นำกลับมา */
+        .nav-links { list-style: none; display: flex; gap: 30px; align-items: center; }
+        .nav-links li a { text-decoration: none; color: var(--primary-navy); font-weight: 500; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s; }
+        .nav-links li a:hover { color: var(--luxury-gold); }
+
+        .member-info { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: var(--primary-navy); border-left: 2px solid var(--luxury-gold); padding-left: 15px; }
+        .member-status { background: var(--luxury-gold); color: var(--primary-navy); padding: 2px 8px; border-radius: 20px; font-size: 10px; }
+
+        .search-section { background-color: var(--primary-navy); padding: 50px 20px; text-align: center; }
         .search-container { max-width: 800px; margin: 0 auto; display: flex; background: var(--white); border-radius: 4px; overflow: hidden; }
         .search-input { flex: 1; padding: 15px 20px; border: none; outline: none; font-size: 16px; }
         .search-btn { background-color: var(--luxury-gold); color: var(--primary-navy); border: none; padding: 0 30px; font-weight: 600; cursor: pointer; }
 
+        .filter-toggle { display: flex; justify-content: center; gap: 20px; margin-top: 25px; }
+        .filter-btn { background: transparent; border: 1.5px solid var(--luxury-gold); color: var(--white); padding: 8px 25px; border-radius: 20px; cursor: pointer; font-size: 13px; transition: 0.3s; }
+        .filter-btn.active { background: var(--luxury-gold); color: var(--primary-navy); font-weight: 700; }
+
         .main-container { display: flex; gap: 40px; max-width: 1400px; margin: 40px auto; padding: 0 5%; }
-
-        /* Hospital List */
         .hospital-list { width: 320px; flex-shrink: 0; display: flex; flex-direction: column; gap: 15px; }
-        .hospital-card { background: var(--white); border: 1px solid #E0E0E0; border-radius: 8px; padding: 20px; cursor: pointer; transition: all 0.3s; }
-        .hospital-card.active { border-color: var(--luxury-gold); background-color: rgba(212, 175, 55, 0.05); border-left: 4px solid var(--luxury-gold); }
-        .hosp-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--primary-navy); }
-        .badge-jci { color: var(--luxury-gold); font-size: 11px; font-weight: 600; text-transform: uppercase; }
+        .hospital-card { background: var(--white); border: 1px solid #E0E0E0; border-radius: 8px; padding: 20px; cursor: pointer; transition: 0.3s; display: none; }
+        .hospital-card.visible { display: block; }
+        .hospital-card.active { border-color: var(--luxury-gold); background-color: rgba(212, 175, 55, 0.05); border-left: 5px solid var(--luxury-gold); }
+        .hosp-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; }
+        .badge-cert { color: var(--luxury-gold); font-size: 11px; font-weight: 600; text-transform: uppercase; }
 
-        /* Doctor Grid */
         .doctor-display { flex: 1; }
         .doctor-grid { display: none; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
         .doctor-grid.active { display: grid; }
@@ -51,30 +60,17 @@
         .doc-card:hover { border-color: var(--luxury-gold); transform: translateY(-5px); }
         .doc-img { width: 100%; height: 220px; background: #eee center/cover; }
         .doc-info { padding: 20px; }
-        .doc-name { font-size: 20px; color: var(--primary-navy); margin-bottom: 5px; }
-        .doc-spec { color: var(--luxury-gold); font-size: 12px; font-weight: 600; margin-bottom: 15px; text-transform: uppercase; }
-        
-        .btn-view-profile { display: block; text-align: center; padding: 10px; border: 1px solid var(--luxury-gold); color: var(--luxury-gold); text-decoration: none; font-size: 12px; font-weight: 600; margin-bottom: 15px; border-radius: 4px; transition: 0.3s; }
+        .btn-view-profile { display: block; text-align: center; padding: 10px; border: 1px solid var(--luxury-gold); color: var(--luxury-gold); text-decoration: none; font-size: 12px; font-weight: 700; margin-bottom: 15px; border-radius: 4px; transition: 0.3s; }
         .btn-view-profile:hover { background: var(--luxury-gold); color: var(--white); }
 
-        .select-doc { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; cursor: pointer; border-top: 1px solid #eee; padding-top: 15px; }
-
-        /* Slide-over Styling */
         .slide-over-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--overlay); z-index: 2000; visibility: hidden; opacity: 0; transition: 0.4s; }
         .slide-over-overlay.active { visibility: visible; opacity: 1; }
-
-        .slide-over-panel { position: fixed; top: 0; right: -500px; width: 450px; height: 100%; background: var(--white); z-index: 2001; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); padding: 40px; overflow-y: auto; box-shadow: -10px 0 30px rgba(0,0,0,0.1); }
+        .slide-over-panel { position: fixed; top: 0; right: -500px; width: 450px; height: 100%; background: var(--white); z-index: 2001; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); padding: 40px; overflow-y: auto; }
         .slide-over-panel.active { right: 0; }
-
-        .close-slide { position: absolute; top: 20px; left: 20px; cursor: pointer; font-size: 24px; color: var(--primary-navy); }
-        .review-section { margin-top: 30px; }
-        .review-img-box { display: flex; gap: 10px; margin-bottom: 20px; }
-        .review-img { flex: 1; height: 120px; background: #eee center/cover; border-radius: 4px; }
-        .review-text { font-size: 14px; line-height: 1.6; color: #555; font-style: italic; background: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 3px solid var(--luxury-gold); }
+        .close-slide { position: absolute; top: 20px; left: 20px; cursor: pointer; font-size: 24px; }
 
         .bottom-action { margin-top: 40px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #ddd; padding-top: 20px; }
-        .btn-next { background: var(--primary-navy); color: var(--white); padding: 15px 40px; text-decoration: none; border-radius: 4px; font-weight: 600; }
-
+        .btn-next { background: var(--primary-navy); color: var(--white); padding: 15px 40px; text-decoration: none; border-radius: 4px; font-weight: 700; }
     </style>
 </head>
 <body>
@@ -85,43 +81,62 @@
                 <img src="image_c8fa02.jpg" alt="AuraHub Logo" class="logo-img">
                 <span class="logo-text">AuraHub</span>
             </a>
+            <ul class="nav-links">
+                <li><a href="index.html#promotions">Promotions</a></li>
+                <li><a href="register.html">AI Aesthetic</a></li>
+                <li><a href="index.html#join">Join Us</a></li>
+                <li class="member-info">
+                    <span>Member: <strong id="memberDisplayName">AU7X9284</strong></span>
+                    <span class="member-status">VIP</span>
+                </li>
+            </ul>
         </div>
     </header>
 
     <div class="search-section">
         <div class="search-container">
-            <input type="text" class="search-input" placeholder="Search Hospital or Doctor...">
+            <input type="text" class="search-input" placeholder="Search Hospital or Specialist...">
             <button class="search-btn">Search</button>
+        </div>
+        <div class="filter-toggle">
+            <button class="filter-btn active" onclick="filterType('hospital', this)">Hospitals (JCI)</button>
+            <button class="filter-btn" onclick="filterType('clinic', this)">Clinics (Board Certified)</button>
         </div>
     </div>
 
     <div class="main-container">
         <aside class="hospital-list">
-            <div class="hospital-card active" onclick="showDoctors('masterpiece', this)">
-                <span class="badge-jci">★ JCI Accredited</span>
+            <div class="hospital-card visible active" data-type="hospital" onclick="showDoctors('masterpiece', this)">
+                <span class="badge-cert">★ JCI Accredited</span>
                 <div class="hosp-name">Masterpiece Hospital</div>
             </div>
-            <div class="hospital-card" onclick="showDoctors('yanhee', this)">
-                <span class="badge-jci">★ JCI Accredited</span>
+            <div class="hospital-card visible" data-type="hospital" onclick="showDoctors('yanhee', this)">
+                <span class="badge-cert">★ JCI Accredited</span>
                 <div class="hosp-name">Yanhee Hospital</div>
             </div>
-            <div class="hospital-card" onclick="showDoctors('bumrungrad', this)">
-                <span class="badge-jci">★ JCI World Class</span>
+            <div class="hospital-card visible" data-type="hospital" onclick="showDoctors('bumrungrad', this)">
+                <span class="badge-cert">★ JCI World Class</span>
                 <div class="hosp-name">Bumrungrad International</div>
+            </div>
+            <div class="hospital-card" data-type="clinic" onclick="showDoctors('apex', this)">
+                <span class="badge-cert">★ Board Certified</span>
+                <div class="hosp-name">Apex Medical Center</div>
+            </div>
+            <div class="hospital-card" data-type="clinic" onclick="showDoctors('the-clinic', this)">
+                <span class="badge-cert">★ Award Winning Clinic</span>
+                <div class="hosp-name">The Klinique</div>
             </div>
         </aside>
 
         <div class="doctor-display">
-            <h2 style="margin-bottom: 25px;">Available Specialists</h2>
-
             <div id="masterpiece" class="doctor-grid active">
                 <div class="doc-card">
                     <div class="doc-img" style="background-image: url('https://images.unsplash.com/photo-1612349317150-e410f624c427?q=80&w=400');"></div>
                     <div class="doc-info">
                         <div class="doc-name">Dr. Kosit E.</div>
                         <div class="doc-spec">Open Rhinoplasty Specialist</div>
-                        <a href="#" class="btn-view-profile" onclick="openSlideOver('Dr. Kosit E.', 'Masterpiece Hospital')">View Profile & Reviews</a>
-                        <label class="select-doc"><input type="radio" name="d"> Select This Doctor</label>
+                        <a href="#" class="btn-view-profile" onclick="openSlideOver('Dr. Kosit E.', 'Masterpiece Hospital')">View Reviews</a>
+                        <label class="select-doc"><input type="radio" name="d" checked> Select This Doctor</label>
                     </div>
                 </div>
             </div>
@@ -132,7 +147,7 @@
                     <div class="doc-info">
                         <div class="doc-name">Dr. San P.</div>
                         <div class="doc-spec">Gender Affirmation Specialist</div>
-                        <a href="#" class="btn-view-profile" onclick="openSlideOver('Dr. San P.', 'Yanhee Hospital')">View Profile & Reviews</a>
+                        <a href="#" class="btn-view-profile" onclick="openSlideOver('Dr. San P.', 'Yanhee Hospital')">View Reviews</a>
                         <label class="select-doc"><input type="radio" name="d"> Select This Doctor</label>
                     </div>
                 </div>
@@ -144,15 +159,39 @@
                     <div class="doc-info">
                         <div class="doc-name">Dr. Somchai T.</div>
                         <div class="doc-spec">Board Certified Plastic Surgeon</div>
-                        <a href="#" class="btn-view-profile" onclick="openSlideOver('Dr. Somchai T.', 'Bumrungrad Hospital')">View Profile & Reviews</a>
+                        <a href="#" class="btn-view-profile" onclick="openSlideOver('Dr. Somchai T.', 'Bumrungrad Hospital')">View Reviews</a>
+                        <label class="select-doc"><input type="radio" name="d"> Select This Doctor</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="apex" class="doctor-grid">
+                <div class="doc-card">
+                    <div class="doc-img" style="background-image: url('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=400');"></div>
+                    <div class="doc-info">
+                        <div class="doc-name">Dr. Nantapat S.</div>
+                        <div class="doc-spec">Dermatology & Laser Specialist</div>
+                        <a href="#" class="btn-view-profile" onclick="openSlideOver('Dr. Nantapat S.', 'Apex Medical Center')">View Reviews</a>
+                        <label class="select-doc"><input type="radio" name="d"> Select This Doctor</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="the-clinic" class="doctor-grid">
+                <div class="doc-card">
+                    <div class="doc-img" style="background-image: url('https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=400');"></div>
+                    <div class="doc-info">
+                        <div class="doc-name">Dr. Rushapol L.</div>
+                        <div class="doc-spec">Anti-Aging Specialist</div>
+                        <a href="#" class="btn-view-profile" onclick="openSlideOver('Dr. Rushapol L.', 'The Klinique')">View Reviews</a>
                         <label class="select-doc"><input type="radio" name="d"> Select This Doctor</label>
                     </div>
                 </div>
             </div>
 
             <div class="bottom-action">
-                <p>Selected doctor will be included in your VIP package.</p>
-                <a href="options.html" class="btn-next">Finish & Next Step ➔</a>
+                <p>Proceed to customize your luxury travel package.</p>
+                <a href="options.html" class="btn-next">Next: Customize Package ➔</a>
             </div>
         </div>
     </div>
@@ -161,28 +200,41 @@
     <div class="slide-over-panel" id="slidePanel">
         <span class="close-slide" onclick="closeSlideOver()">✕</span>
         <h2 id="slideDocName" style="margin-top: 40px; color: var(--primary-navy);">Doctor Name</h2>
-        <p id="slideHospName" style="color: var(--luxury-gold); font-weight: 600; margin-bottom: 20px;">Hospital Name</p>
-        
+        <p id="slideHospName" style="color: var(--luxury-gold); font-weight: 600; margin-bottom: 20px;">Establishment Name</p>
         <div class="review-section">
             <h3 style="font-size: 18px; margin-bottom: 15px;">Patient Reviews & Results</h3>
             <div class="review-img-box">
                 <div class="review-img" style="background-image: url('https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=300');"></div>
                 <div class="review-img" style="background-image: url('https://images.unsplash.com/photo-1581056771107-24ca5f033842?q=80&w=300');"></div>
             </div>
-            <div class="review-text">
-                "I traveled from Phnom Penh for a revision rhinoplasty. Dr. Kosit was amazing and AuraHub's interpreter made everything so easy. Highly recommend!"
-                <br><br>
-                <strong>- Verified Patient from Cambodia 🇰🇭</strong>
+            <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; border-left: 4px solid var(--luxury-gold);">
+                "Perfect result! The AuraHub team and the doctor were very professional."
+                <br><br><strong>- Verified Patient from Cambodia 🇰🇭</strong>
             </div>
         </div>
     </div>
 
     <script>
-        function showDoctors(hospitalId, card) {
+        // ระบบสลับ Hospital/Clinic
+        function filterType(type, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.hospital-card').forEach(card => {
+                if (card.getAttribute('data-type') === type) card.classList.add('visible');
+                else card.classList.remove('visible', 'active');
+            });
+            // คลิกรายการแรกโดยอัตโนมัติ
+            const firstVisible = document.querySelector('.hospital-card.visible');
+            if(firstVisible) firstVisible.click();
+        }
+
+        // ระบบแสดงรายชื่อหมอตามสถานที่
+        function showDoctors(id, card) {
             document.querySelectorAll('.hospital-card').forEach(c => c.classList.remove('active'));
             card.classList.add('active');
             document.querySelectorAll('.doctor-grid').forEach(g => g.classList.remove('active'));
-            document.getElementById(hospitalId).classList.add('active');
+            const target = document.getElementById(id);
+            if(target) target.classList.add('active');
         }
 
         function openSlideOver(name, hosp) {
@@ -198,5 +250,4 @@
         }
     </script>
 </body>
-
 </html>
