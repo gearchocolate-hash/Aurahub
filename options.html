@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customize Your Package | AuraHub</title>
+    <title>Customize Your Package | AuraHub Member</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
@@ -29,11 +29,15 @@
         .logo-container { display: flex; align-items: center; gap: 10px; text-decoration: none; }
         .logo-img { height: 45px; width: auto; }
         .logo-text { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--primary-navy); letter-spacing: 1px; }
-        .nav-links { list-style: none; display: flex; gap: 30px; }
-        .nav-links li a { text-decoration: none; color: var(--primary-navy); font-weight: 500; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s; padding: 5px 0; position: relative; }
-        .nav-links li a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0; background-color: var(--luxury-gold); transition: width 0.3s; }
+
+        /* Tabs ด้านบน */
+        .nav-links { list-style: none; display: flex; gap: 30px; align-items: center; }
+        .nav-links li a { text-decoration: none; color: var(--primary-navy); font-weight: 500; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s; }
         .nav-links li a:hover { color: var(--luxury-gold); }
-        .nav-links li a:hover::after { width: 100%; }
+        
+        /* Member Info */
+        .member-info { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: var(--primary-navy); border-left: 2px solid var(--luxury-gold); padding-left: 15px; }
+        .member-status { background: var(--luxury-gold); color: var(--primary-navy); padding: 2px 8px; border-radius: 20px; font-size: 10px; text-transform: uppercase; }
 
         /* Page Layout */
         .page-header { background: var(--primary-navy); color: var(--white); padding: 40px 20px; text-align: center; }
@@ -44,20 +48,18 @@
 
         /* Left Column: Options */
         .options-column { flex: 1; display: flex; flex-direction: column; gap: 30px; }
-
-        /* Option Card Container */
         .option-section { background: var(--white); border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); padding: 30px; border-top: 4px solid var(--luxury-gold); }
         .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
         .section-title { font-size: 20px; color: var(--primary-navy); }
-        .badge-free { background: var(--success); color: var(--white); font-size: 12px; padding: 4px 10px; border-radius: 20px; font-weight: 600; text-transform: uppercase; }
+        .badge-free { background: var(--luxury-gold); color: var(--primary-navy); font-size: 12px; padding: 4px 10px; border-radius: 4px; font-weight: 700; text-transform: uppercase; }
 
-        /* Interpreter Info (Fixed) */
-        .interpreter-profile { display: flex; gap: 20px; align-items: center; background: #f9f9f9; padding: 15px; border-radius: 8px; border: 1px solid #eee; }
+        /* Interpreter Profile */
+        .interpreter-profile { display: flex; gap: 20px; align-items: center; background: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid var(--luxury-gold); }
         .interpreter-img { width: 70px; height: 70px; border-radius: 50%; background: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop') center/cover; }
         .interpreter-details h4 { color: var(--primary-navy); font-size: 18px; margin-bottom: 5px; }
         .interpreter-details p { font-size: 13px; color: #666; line-height: 1.5; }
 
-        /* Selectable Cards (Hotel & Car) */
+        /* Choice Grid */
         .choice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
         .choice-card { border: 2px solid #eee; border-radius: 6px; padding: 15px; cursor: pointer; transition: all 0.3s; position: relative; }
         .choice-card:hover { border-color: var(--luxury-gold); }
@@ -67,23 +69,22 @@
         .choice-desc { font-size: 12px; color: #666; margin-bottom: 15px; }
         .choice-price { font-weight: 600; color: var(--luxury-gold); font-size: 14px; }
 
-        /* Specific Input for Days */
-        .days-input-group { margin-top: 15px; display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 500; }
-        .days-input-group input { width: 60px; padding: 5px 10px; border: 1px solid #ccc; border-radius: 4px; outline: none; text-align: center; }
+        .days-input-group { margin-top: 20px; display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; background: #f9f9f9; padding: 15px; border-radius: 6px; border: 1px solid #eee; }
+        .days-input-group input { width: 60px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; outline: none; text-align: center; font-weight: 600; }
 
         /* Right Column: Summary Box */
         .summary-column { width: 350px; background: var(--white); border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); padding: 30px; position: sticky; top: 100px; }
         .summary-title { font-size: 20px; color: var(--primary-navy); border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 20px; }
         
         .summary-item { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 14px; color: #555; }
-        .summary-item.free .price { color: var(--success); font-weight: 600; }
-        .summary-item.addon .price { color: var(--primary-navy); font-weight: 600; }
+        .summary-item .price { font-weight: 600; }
+        .text-success { color: var(--success); }
         
         .summary-total { display: flex; justify-content: space-between; margin-top: 20px; padding-top: 15px; border-top: 2px solid #eee; font-size: 18px; font-weight: 700; color: var(--primary-navy); }
-        .total-price { color: var(--luxury-gold); }
+        .total-price { color: var(--luxury-gold); font-size: 24px; }
 
-        .btn-checkout { display: block; width: 100%; text-align: center; background: var(--luxury-gold); color: var(--primary-navy); padding: 15px; border: none; border-radius: 4px; font-weight: 600; font-size: 15px; text-transform: uppercase; margin-top: 25px; cursor: pointer; transition: background 0.3s; text-decoration: none; }
-        .btn-checkout:hover { background: var(--gold-hover); }
+        .btn-checkout { display: block; width: 100%; text-align: center; background: var(--luxury-gold); color: var(--primary-navy); padding: 15px; border: none; border-radius: 4px; font-weight: 700; font-size: 15px; text-transform: uppercase; margin-top: 25px; cursor: pointer; transition: 0.3s; }
+        .btn-checkout:hover { background: var(--gold-hover); transform: translateY(-2px); }
 
     </style>
 </head>
@@ -96,17 +97,20 @@
                 <span class="logo-text">AuraHub</span>
             </a>
             <ul class="nav-links">
-                <li><a href="#promotions">Promotions</a></li>
-                <li><a href="#ai">AI Aesthetic</a></li>
-                <li><a href="#join">Join Us</a></li>
-                <li><a href="#contact">Contact Us</a></li>
+                <li><a href="index.html#promotions">Promotions</a></li>
+                <li><a href="register.html">AI Aesthetic</a></li>
+                <li><a href="index.html#join">Join Us</a></li>
+                <li class="member-info">
+                    <span>Member: <strong id="memberDisplayName">AU7X9284</strong></span>
+                    <span class="member-status">VIP</span>
+                </li>
             </ul>
         </div>
     </header>
 
     <div class="page-header">
-        <h1 class="page-title">Personalize Your Concierge Service</h1>
-        <p class="page-subtitle">We have prepared the essentials. Feel free to upgrade your experience.</p>
+        <h1 class="page-title">Customize Your VIP Package</h1>
+        <p class="page-subtitle">Select the perfect accommodation and transportation to complete your journey.</p>
     </div>
 
     <div class="main-container">
@@ -116,14 +120,14 @@
             <div class="option-section">
                 <div class="section-header">
                     <h2 class="section-title">Personal Interpreter</h2>
-                    <span class="badge-free">Included</span>
+                    <span class="badge-free">Member Privilege</span>
                 </div>
                 <div class="interpreter-profile">
                     <div class="interpreter-img"></div>
                     <div class="interpreter-details">
                         <h4>Mimi (Medical Specialist)</h4>
                         <p><strong>Languages:</strong> English, Thai, Vietnamese</p>
-                        <p>Certified medical interpreter with 5+ years of experience in plastic surgery. She will accompany you during all doctor consultations.</p>
+                        <p style="margin-top: 5px;">Certified medical interpreter. She will accompany you during all doctor consultations to ensure perfect communication.</p>
                     </div>
                 </div>
             </div>
@@ -136,19 +140,19 @@
                     <label class="choice-card selected" onclick="selectHotel(this, 0, '3-Star Boutique')">
                         <input type="radio" name="hotel" checked>
                         <div class="choice-title">3-Star Boutique</div>
-                        <div class="choice-desc">Comfortable stay within 10 mins of the hospital. Breakfast included.</div>
-                        <div class="choice-price">Included (Free)</div>
+                        <div class="choice-desc">Comfortable stay near the hospital. Breakfast included.</div>
+                        <div class="choice-price">Member Included</div>
                     </label>
                     <label class="choice-card" onclick="selectHotel(this, 1500, '4-Star Premium')">
                         <input type="radio" name="hotel">
                         <div class="choice-title">4-Star Premium</div>
-                        <div class="choice-desc">Premium amenities, larger room for recovery.</div>
+                        <div class="choice-desc">Premium amenities, larger room suitable for recovery.</div>
                         <div class="choice-price">+ 1,500 THB / Night</div>
                     </label>
                     <label class="choice-card" onclick="selectHotel(this, 4000, '5-Star Luxury')">
                         <input type="radio" name="hotel">
                         <div class="choice-title">5-Star Luxury</div>
-                        <div class="choice-desc">Ultimate luxury and privacy. 24hr room service.</div>
+                        <div class="choice-desc">Ultimate luxury and privacy. 24hr VIP room service.</div>
                         <div class="choice-price">+ 4,000 THB / Night</div>
                     </label>
                 </div>
@@ -159,19 +163,19 @@
                     <h2 class="section-title">Private Transportation</h2>
                 </div>
                 <div class="choice-grid">
-                    <label class="choice-card selected" onclick="selectCar(this, 0, 'Toyota Camry')">
+                    <label class="choice-card selected" onclick="selectCar(this, 'Toyota Camry')">
                         <input type="radio" name="car" checked>
                         <div class="choice-title">Toyota Camry</div>
                         <div class="choice-desc">Standard VIP Sedan.</div>
-                        <div class="choice-price">Included (Free)</div>
+                        <div class="choice-price">First 2 Days FREE<br>Then +2,000 THB/Day</div>
                     </label>
-                    <label class="choice-card" onclick="selectCar(this, 2500, 'Toyota Alphard')">
+                    <label class="choice-card" onclick="selectCar(this, 'Toyota Alphard')">
                         <input type="radio" name="car">
                         <div class="choice-title">Toyota Alphard</div>
                         <div class="choice-desc">Luxury Van, perfect for post-surgery comfort.</div>
                         <div class="choice-price">+ 2,500 THB / Day</div>
                     </label>
-                    <label class="choice-card" onclick="selectCar(this, 0, 'No Transport')">
+                    <label class="choice-card" onclick="selectCar(this, 'No Transport')">
                         <input type="radio" name="car">
                         <div class="choice-title">No Transport</div>
                         <div class="choice-desc">I will manage my own transportation.</div>
@@ -181,7 +185,7 @@
                 
                 <div class="days-input-group">
                     Need transportation for: 
-                    <input type="number" id="carDays" value="1" min="1" max="14" onchange="updateSummary()"> Days
+                    <input type="number" id="carDays" value="2" min="1" max="14" onchange="updateSummary()"> Days
                 </div>
             </div>
 
@@ -190,27 +194,28 @@
         <div class="summary-column">
             <h3 class="summary-title">Booking Summary</h3>
             
-            <div class="summary-item free">
+            <div class="summary-item">
                 <span>Personal Interpreter</span>
-                <span class="price">Included</span>
+                <span class="price text-success">Included</span>
             </div>
             
             <div class="summary-item" id="sum-hotel">
                 <span>Hotel: 3-Star Boutique</span>
-                <span class="price" style="color: var(--success); font-weight: 600;">Included</span>
+                <span class="price text-success">Included</span>
             </div>
             
             <div class="summary-item" id="sum-car">
-                <span>Car: Toyota Camry (1 Day)</span>
-                <span class="price" style="color: var(--success); font-weight: 600;">Included</span>
+                <span>Car: Toyota Camry (2 Days)</span>
+                <span class="price text-success">Included</span>
             </div>
 
             <div class="summary-total">
-                <span>Total Add-on Cost</span>
+                <span>Add-on Total</span>
                 <span class="total-price" id="totalCost">0 THB</span>
             </div>
+            <p style="font-size: 10px; color: #888; text-align: right; margin-top: 5px;">*Procedure fees not included</p>
 
-            <button class="btn-checkout">Complete Booking</button>
+            <button class="btn-checkout" onclick="alert('Booking Completed! Our concierge will contact you shortly.')">Complete Booking</button>
         </div>
 
     </div>
@@ -218,56 +223,65 @@
     <script>
         let currentHotelPrice = 0;
         let currentHotelName = '3-Star Boutique';
-        
-        let currentCarPrice = 0;
         let currentCarName = 'Toyota Camry';
 
         function selectHotel(cardElement, price, name) {
-            // UI Update
             document.querySelectorAll('input[name="hotel"]').forEach(el => el.parentElement.classList.remove('selected'));
             cardElement.classList.add('selected');
-            
-            // Data Update
             currentHotelPrice = price;
             currentHotelName = name;
             updateSummary();
         }
 
-        function selectCar(cardElement, price, name) {
-            // UI Update
+        function selectCar(cardElement, name) {
             document.querySelectorAll('input[name="car"]').forEach(el => el.parentElement.classList.remove('selected'));
             cardElement.classList.add('selected');
-            
-            // Disable day input if 'No Transport'
-            document.getElementById('carDays').disabled = (name === 'No Transport');
-
-            // Data Update
-            currentCarPrice = price;
             currentCarName = name;
+            
+            // Disable day input if No Transport
+            document.getElementById('carDays').disabled = (name === 'No Transport');
             updateSummary();
         }
 
         function updateSummary() {
             let days = parseInt(document.getElementById('carDays').value) || 1;
-            
-            // Calculate Car Total
-            let totalCarPrice = currentCarPrice * days;
-            let totalOverall = currentHotelPrice + totalCarPrice; // Assuming hotel price is just a flat add-on for demo, can multiply by days if needed.
+            let totalCarPrice = 0;
 
-            // Update Hotel Text
+            // Logic คิดราคารถ
+            if (currentCarName === 'Toyota Camry') {
+                if (days > 2) {
+                    // ฟรี 2 วันแรก วันที่เกินมาคิด 2,000 บาท/วัน
+                    totalCarPrice = (days - 2) * 2000;
+                } else {
+                    totalCarPrice = 0;
+                }
+            } else if (currentCarName === 'Toyota Alphard') {
+                // Alphard คิด 2,500 บาท ทุกวัน
+                totalCarPrice = days * 2500;
+            } else {
+                totalCarPrice = 0;
+            }
+
+            let totalOverall = currentHotelPrice + totalCarPrice;
+
+            // อัปเดต UI ฝั่งโรงแรม
             let hotelText = `Hotel: ${currentHotelName}`;
-            let hotelPriceText = currentHotelPrice === 0 ? '<span style="color: #2E7D32;">Included</span>' : `+ ${currentHotelPrice.toLocaleString()} THB`;
+            let hotelPriceText = currentHotelPrice === 0 ? '<span class="text-success">Included</span>' : `+ ${currentHotelPrice.toLocaleString()} THB`;
             document.getElementById('sum-hotel').innerHTML = `<span>${hotelText}</span><span class="price">${hotelPriceText}</span>`;
 
-            // Update Car Text
+            // อัปเดต UI ฝั่งรถ
             let carText = currentCarName === 'No Transport' ? 'Car: None' : `Car: ${currentCarName} (${days} Days)`;
-            let carPriceText = totalCarPrice === 0 ? (currentCarName === 'No Transport' ? '-' : '<span style="color: #2E7D32;">Included</span>') : `+ ${totalCarPrice.toLocaleString()} THB`;
+            let carPriceText;
+            if (currentCarName === 'No Transport') {
+                carPriceText = '-';
+            } else {
+                carPriceText = totalCarPrice === 0 ? '<span class="text-success">Included</span>' : `+ ${totalCarPrice.toLocaleString()} THB`;
+            }
             document.getElementById('sum-car').innerHTML = `<span>${carText}</span><span class="price">${carPriceText}</span>`;
 
-            // Update Total
+            // อัปเดตยอดรวม
             document.getElementById('totalCost').innerText = `${totalOverall.toLocaleString()} THB`;
         }
     </script>
 </body>
-
 </html>
