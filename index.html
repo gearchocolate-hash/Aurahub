@@ -36,6 +36,7 @@
             padding: 15px 5%;
             max-width: 1400px;
             margin: 0 auto;
+            flex-wrap: wrap; /* Added for mobile menu */
         }
         .logo-container {
             display: flex;
@@ -54,6 +55,15 @@
             color: var(--primary-navy);
             letter-spacing: 1px;
         }
+        
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--primary-navy);
+        }
+
         .nav-links {
             list-style: none;
             display: flex;
@@ -91,7 +101,6 @@
         /* Hero Section */
         .hero {
             height: 60vh;
-            /* แก้ไขให้ดึงภาพผู้หญิงมาเป็น Background */
             background: linear-gradient(rgba(10, 25, 47, 0.7), rgba(10, 25, 47, 0.7)), 
                         url('image_bf1532.png') center/cover;
             display: flex;
@@ -164,6 +173,75 @@
             font-weight: 700;
         }
 
+        /* -------------------------------------- */
+        /* MOBILE RESPONSIVE STYLES (เพิ่มใหม่ส่วนนี้) */
+        /* -------------------------------------- */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block; /* แสดงปุ่ม 3 ขีดบนมือถือ */
+            }
+
+            .nav-links {
+                display: none; /* ซ่อนเมนูไว้ก่อน */
+                width: 100%;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+                padding-top: 15px;
+                margin-top: 15px;
+                border-top: 1px solid #eee;
+            }
+
+            .nav-links.active {
+                display: flex; /* แสดงเมนูเมื่อกดปุ่ม */
+            }
+
+            .auth-btn {
+                display: block;
+                width: 100%;
+                text-align: center;
+                margin-top: 10px;
+            }
+
+            .hero {
+                height: 50vh;
+            }
+            .hero h1 {
+                font-size: 32px;
+            }
+            .hero p {
+                font-size: 15px;
+            }
+
+            .selection-section {
+                padding: 40px 5%;
+            }
+
+            .section-header h2 {
+                font-size: 28px;
+            }
+
+            /* เปลี่ยน Layout จาก 2 คอลัมน์ เป็น 1 คอลัมน์ (บน-ล่าง) */
+            .service-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .service-image {
+                height: 300px;
+                box-shadow: 10px 10px 0px var(--luxury-gold); /* ลดขนาดเงาลงให้พอดีจอ */
+            }
+
+            .select-box {
+                padding: 25px;
+            }
+
+            /* เปลี่ยนหมวดหมู่บริการเป็น 1 คอลัมน์ยาวลงมา */
+            .select-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -174,11 +252,14 @@
                 <img src="image_c8fa02.jpg" alt="AuraHub Logo" class="logo-img">
                 <span class="logo-text">AuraHub</span>
             </a>
-            <ul class="nav-links">
+            
+            <div class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</div>
+
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#promotions">Promotions</a></li>
                 <li><a href="register.html" style="color: var(--luxury-gold); font-weight: 700;">AI Aesthetic <span class="ai-badge">MEMBER ONLY</span></a></li>
                 <li><a href="#join">Join Us</a></li>
-                <li><a href="register.html" class="auth-btn">Login / Register</a></li>
+                <li style="width: 100%;"><a href="register.html" class="auth-btn">Login / Register</a></li>
             </ul>
         </div>
     </header>
@@ -236,5 +317,11 @@
         </div>
     </section>
 
+    <script>
+        function toggleMobileMenu() {
+            var nav = document.getElementById("navLinks");
+            nav.classList.toggle("active");
+        }
+    </script>
 </body>
 </html>
