@@ -36,7 +36,7 @@
             padding: 15px 5%;
             max-width: 1400px;
             margin: 0 auto;
-            flex-wrap: wrap; /* เพิ่มเพื่อรองรับเมนูมือถือ */
+            flex-wrap: wrap; 
         }
         .logo-container {
             display: flex;
@@ -92,10 +92,31 @@
             padding: 8px 20px;
             border-radius: 4px;
             transition: all 0.3s;
+            display: inline-block;
         }
         .auth-btn:hover {
             background-color: var(--luxury-gold);
             color: var(--white);
+        }
+
+        /* CSS สำหรับแสดงสถานะ Member VIP */
+        .member-info { 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            font-size: 13px; 
+            font-weight: 600; 
+            color: var(--primary-navy); 
+            border-left: 2px solid var(--luxury-gold); 
+            padding-left: 15px; 
+        }
+        .member-status { 
+            background: var(--luxury-gold); 
+            color: var(--primary-navy); 
+            padding: 2px 8px; 
+            border-radius: 20px; 
+            font-size: 10px; 
+            text-transform: uppercase; 
         }
 
         /* Hero Section */
@@ -191,7 +212,9 @@
             }
 
             .nav-links.active { display: flex; }
-
+            
+            /* ปรับกล่อง Member info ให้พอดีบนมือถือ */
+            .member-info { width: 100%; border-left: none; padding-left: 0; justify-content: space-between; }
             .auth-btn { display: block; width: 100%; text-align: center; margin-top: 10px; }
 
             .hero { height: 50vh; }
@@ -208,7 +231,6 @@
         }
 
     </style>
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-J1WJKHDS0X"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -233,7 +255,9 @@
                 <li><a href="promotion.html">Promotions</a></li>
                 <li><a href="register.html" style="color: var(--luxury-gold); font-weight: 700;">AI Aesthetic <span class="ai-badge">MEMBER ONLY</span></a></li>
                 <li><a href="#join">Join Us</a></li>
-                <li style="width: 100%;"><a href="register.html" class="auth-btn">Login / Register</a></li>
+                <li id="memberInfoDisplay" style="width: 100%;">
+                    <a href="register.html" class="auth-btn">Login / Register</a>
+                </li>
             </ul>
         </div>
     </header>
@@ -296,6 +320,20 @@
             var nav = document.getElementById("navLinks");
             nav.classList.toggle("active");
         }
+
+        // เช็คว่ามีข้อมูล Login อยู่หรือไม่ตอนโหลดหน้าเว็บ
+        document.addEventListener("DOMContentLoaded", () => {
+            const memberId = localStorage.getItem('auraHubMemberId');
+            const memberInfoBox = document.getElementById('memberInfoDisplay');
+            
+            if (memberId) {
+                // เอา width: 100% ออกเพื่อไม่ให้ปุ่มกินพื้นที่เต็ม
+                memberInfoBox.style.width = "auto";
+                // เปลี่ยนเป็นแสดง ID แทน
+                memberInfoBox.className = "member-info";
+                memberInfoBox.innerHTML = `<span>Member: <strong>${memberId}</strong></span><span class="member-status">VIP</span>`;
+            }
+        });
     </script>
 </body>
 </html>
