@@ -40,14 +40,11 @@
         .member-info { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: var(--primary-navy); border-left: 2px solid var(--luxury-gold); padding-left: 15px; }
         .member-status { background: var(--luxury-gold); color: var(--primary-navy); padding: 2px 8px; border-radius: 20px; font-size: 10px; text-transform: uppercase; }
 
-        /* ========================================== */
-        /* HERO BANNER SECTION (ส่วนที่คุณเปลี่ยนรูปได้) */
-        /* ========================================== */
+        /* HERO BANNER SECTION */
         .promo-hero {
             position: relative;
-            /* >>> เปลี่ยนชื่อไฟล์รูปภาพตรงนี้ครับ <<< */
             background: url('my-banner.jpg') center/cover no-repeat;
-            background-color: #ffe0eb; /* สีพื้นหลังสำรองกรณีรูปไม่โหลด */
+            background-color: #ffe0eb;
             height: 450px;
             display: flex;
             align-items: center;
@@ -55,164 +52,62 @@
             padding: 0 10%;
         }
         
-        /* ฟิลเตอร์ดำจางๆ เพื่อให้ตัวหนังสือลอยเด่นขึ้น (ถ้าไม่ชอบลบออกได้ครับ) */
         .promo-hero::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(to right, rgba(255,255,255,0.1), rgba(255,255,255,0.7));
             z-index: 1;
         }
 
-        .promo-hero-text {
-            position: relative;
-            z-index: 2;
-            text-align: right;
-        }
-        .promo-hero-title {
-            font-size: 80px;
-            color: var(--promo-pink);
-            line-height: 1;
-            text-shadow: 2px 2px 10px rgba(255,255,255,0.9);
-            font-weight: 800;
-        }
-        .promo-badge {
-            background: #20b2aa;
-            color: white;
-            padding: 15px 35px;
-            border-radius: 50px;
-            font-size: 24px;
-            font-weight: 800;
-            display: inline-block;
-            margin-top: 20px;
-            transform: rotate(-5deg);
-            box-shadow: 0 5px 15px rgba(32, 178, 170, 0.4);
-        }
+        .promo-hero-text { position: relative; z-index: 2; text-align: right; }
+        .promo-hero-title { font-size: 80px; color: var(--promo-pink); line-height: 1; text-shadow: 2px 2px 10px rgba(255,255,255,0.9); font-weight: 800; }
+        .promo-badge { background: #20b2aa; color: white; padding: 15px 35px; border-radius: 50px; font-size: 24px; font-weight: 800; display: inline-block; margin-top: 20px; transform: rotate(-5deg); box-shadow: 0 5px 15px rgba(32, 178, 170, 0.4); }
 
         /* Promotion Cards */
         .promo-section { padding: 60px 5%; max-width: 1200px; margin: -60px auto 0; position: relative; z-index: 10;}
-        .promo-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
+        .promo-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
 
-        .promo-card {
-            background: var(--promo-light-pink);
-            border-radius: 30px;
-            padding: 40px 20px;
-            text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            border: 3px solid transparent;
-        }
-        
+        .promo-card { background: var(--promo-light-pink); border-radius: 30px; padding: 40px 20px; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.08); transition: all 0.3s ease; cursor: pointer; text-decoration: none; display: flex; flex-direction: column; align-items: center; border: 3px solid transparent; }
         .promo-card:hover { transform: translateY(-10px); background: #ffd6e6; border-color: white;}
         
-        .promo-circle-img {
-            width: 220px;
-            height: 220px;
-            border-radius: 50%;
-            border: 8px solid var(--promo-pink);
-            margin-bottom: 25px;
-            background-size: cover;
-            background-position: center;
-            background-color: white;
-            box-shadow: 0 10px 20px rgba(255, 102, 163, 0.3);
-        }
+        .promo-circle-img { width: 220px; height: 220px; border-radius: 50%; border: 8px solid var(--promo-pink); margin-bottom: 25px; background-size: cover; background-position: center; background-color: white; box-shadow: 0 10px 20px rgba(255, 102, 163, 0.3); }
 
         .promo-title { font-size: 28px; font-weight: 700; color: #1a4b8c; margin-bottom: 10px; }
         .promo-desc { font-size: 14px; color: #555; margin-bottom: 20px; line-height: 1.6; height: 45px;}
         .promo-duration { color: #fff; background: var(--promo-pink); padding: 5px 20px; border-radius: 20px; font-weight: 600; font-size: 13px; margin-bottom: 15px; text-transform: uppercase;}
-        
-        .price-box {
-            background: white;
-            color: #1a4b8c;
-            font-size: 28px;
-            font-weight: 800;
-            padding: 10px 30px;
-            border-radius: 30px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            width: 80%;
-        }
+        .price-box { background: white; color: #1a4b8c; font-size: 28px; font-weight: 800; padding: 10px 30px; border-radius: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); width: 80%; }
 
         /* Features List */
-        .promo-features {
-            margin-top: 60px;
-            padding: 30px;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-            background: #fcfcfc;
-            border-radius: 20px;
-            border: 1px dashed #ccc;
-        }
+        .promo-features { margin-top: 60px; padding: 30px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 900px; margin-left: auto; margin-right: auto; background: #fcfcfc; border-radius: 20px; border: 1px dashed #ccc; }
         .feature-item { display: flex; align-items: center; gap: 15px; font-size: 15px; color: #1a4b8c; font-weight: 600; }
         .feature-icon { font-size: 20px; color: #20b2aa; }
 
         /* Contact Footer */
-        .promo-footer {
-            margin-top: 60px;
-            border-top: 1px solid #eee;
-            padding: 30px 5%;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 20px;
-            background-color: #fcfcfc;
-        }
+        .promo-footer { margin-top: 60px; border-top: 1px solid #eee; padding: 30px 5%; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; background-color: #fcfcfc; }
         .contact-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: #333; font-weight: 500;}
         .contact-icon { background: #333; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;}
 
-        /* ========================================== */
-        /* MOBILE RESPONSIVE STYLES                   */
-        /* ========================================== */
         @media (max-width: 768px) {
             .mobile-menu-btn { display: block; }
-            .nav-links { 
-                display: none; width: 100%; flex-direction: column; align-items: flex-start; 
-                gap: 15px; padding-top: 15px; margin-top: 15px; border-top: 1px solid #eee; 
-            }
+            .nav-links { display: none; width: 100%; flex-direction: column; align-items: flex-start; gap: 15px; padding-top: 15px; margin-top: 15px; border-top: 1px solid #eee; }
             .nav-links.active { display: flex; }
             .member-info { width: 100%; border-left: none; padding-left: 0; margin-top: 10px; justify-content: space-between; }
-            
-            /* ปรับแบนเนอร์บนมือถือ */
-            .promo-hero { 
-                height: 350px; 
-                justify-content: center; 
-                text-align: center; 
-                padding: 0 20px;
-            }
-            .promo-hero::before {
-                background: rgba(255,255,255,0.6); /* ทำให้พื้นหลังสว่างขึ้นบนมือถือเพื่อให้อ่านง่าย */
-            }
+            .promo-hero { height: 350px; justify-content: center; text-align: center; padding: 0 20px; }
+            .promo-hero::before { background: rgba(255,255,255,0.6); }
             .promo-hero-text { text-align: center; }
             .promo-hero-title { font-size: 50px; }
             .promo-badge { font-size: 18px; padding: 10px 25px; }
-
-            /* ปรับการ์ดให้เรียง 1 คอลัมน์ */
             .promo-section { margin-top: -30px; }
             .promo-container { grid-template-columns: 1fr; gap: 20px; }
             .promo-desc { height: auto; }
-
-            /* ปรับกล่องฟีเจอร์และฟุตเตอร์ */
             .promo-features { grid-template-columns: 1fr; padding: 20px; }
             .promo-footer { flex-direction: column; align-items: flex-start; gap: 15px;}
         }
     </style>
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-J1WJKHDS0X"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-J1WJKHDS0X');
 </script>
 </head>
@@ -231,9 +126,9 @@
                 <li><a href="promotion.html" style="color: var(--luxury-gold); font-weight: 700;">Promotions</a></li>
                 <li><a href="register.html">AI Aesthetic</a></li>
                 <li><a href="index.html#join">Join Us</a></li>
-                <li class="member-info">
-                    <span>Member: <strong id="memberDisplayName">AU7X9284</strong></span>
-                    <span class="member-status">VIP</span>
+                
+                <li class="member-info" id="memberInfoDisplay">
+                    <a href="register.html" style="background: var(--luxury-gold); color: var(--primary-navy); padding: 8px 15px; border-radius: 4px; font-weight: 700; font-size: 12px; text-decoration: none;">LOGIN / REGISTER</a>
                 </li>
             </ul>
         </div>
@@ -248,7 +143,7 @@
 
     <section class="promo-section">
         <div class="promo-container">
-            <a href="options.html" class="promo-card">
+            <a href="options.html" class="promo-card" onclick="trackAndGo(event, 'P1', 'options.html')">
                 <div class="promo-circle-img" style="background-image: url('promo-breast.jpg');"></div>
                 <h3 class="promo-title">เสริมหน้าอก</h3>
                 <p class="promo-desc">สวยเป็นธรรมชาติ รับกับรูปร่าง สมดุล ดูดี มั่นใจในทุกมุมมอง</p>
@@ -256,7 +151,7 @@
                 <div class="price-box">฿ 263K</div>
             </a>
 
-            <a href="options.html" class="promo-card">
+            <a href="options.html" class="promo-card" onclick="trackAndGo(event, 'P2', 'options.html')">
                 <div class="promo-circle-img" style="background-image: url('promo-nose.jpg');"></div>
                 <h3 class="promo-title">เสริมจมูก</h3>
                 <p class="promo-desc">เสริมจมูกที่ "ใช่" สำหรับโครงหน้าคุณ</p>
@@ -264,7 +159,7 @@
                 <div class="price-box">฿ 138K</div>
             </a>
 
-            <a href="options.html" class="promo-card">
+            <a href="options.html" class="promo-card" onclick="trackAndGo(event, 'P3', 'options.html')">
                 <div class="promo-circle-img" style="background-image: url('promo-eye.jpg');"></div>
                 <h3 class="promo-title">ตาสองชั้น</h3>
                 <p class="promo-desc">ตาสวยแบบไม่หลอกตา ชั้นตาชัด ดูเป็นธรรมชาติ</p>
@@ -303,6 +198,58 @@
     </div>
 
     <script>
+        const GAS_URL = 'https://script.google.com/macros/s/AKfycbxVwQNS9mE4ngyIWGAmuiQbxVYm-f_qN86WJT-1JjHiOcCv1eYB5pHELEp2zGht9fEl/exec';
+
+        // 1. ระบบเช็คสถานะการเข้าสู่ระบบ (เมื่อโหลดหน้าเว็บ)
+        document.addEventListener("DOMContentLoaded", () => {
+            const memberId = localStorage.getItem('auraHubMemberId');
+            const memberInfoBox = document.getElementById('memberInfoDisplay');
+            
+            if (memberId) {
+                // ถ้ามี ID อยู่ในเครื่อง ให้แสดงรหัส VIP ของลูกค้า
+                memberInfoBox.style.borderLeft = "2px solid var(--luxury-gold)";
+                memberInfoBox.innerHTML = `<span>Member: <strong>${memberId}</strong></span><span class="member-status">VIP</span>`;
+            } else {
+                // ถ้าไม่มี ให้เอาเส้นขอบออก (ปล่อยปุ่ม Login ไว้เหมือนเดิม)
+                memberInfoBox.style.borderLeft = "none";
+            }
+        });
+
+        // 2. ระบบส่งข้อมูล Tracking เข้า Google Sheet
+        function trackAndGo(e, linkCode, destinationUrl) {
+            e.preventDefault(); // หยุดการเปลี่ยนหน้าเว็บทันที เพื่อส่งข้อมูลก่อน
+            
+            const memberId = localStorage.getItem('auraHubMemberId') || 'GUEST';
+            
+            // เตรียมข้อมูลส่งไปที่ Apps Script
+            const formData = new FormData();
+            formData.append('action', 'track');
+            formData.append('memberId', memberId);
+            formData.append('linkCode', linkCode); // โค้ด P1, P2, P3
+            
+            // ฟังก์ชันบังคับเด้งหน้าใหม่ (ป้องกันเว็บค้าง)
+            let isRedirected = false;
+            const doRedirect = () => {
+                if(!isRedirected) {
+                    isRedirected = true;
+                    window.location.href = destinationUrl;
+                }
+            };
+
+            // บังคับเปลี่ยนหน้าภายใน 1 วินาที (เผื่อเน็ตลูกค้าช้า)
+            setTimeout(doRedirect, 1000);
+
+            // ยิงข้อมูลไปที่ Google Sheet แบบลับๆ
+            fetch(GAS_URL, {
+                method: 'POST',
+                body: formData
+            }).then(() => {
+                doRedirect(); // ส่งเสร็จปุ๊บ เด้งหน้าใหม่ทันที
+            }).catch(() => {
+                doRedirect(); // แม้จะ Error ก็ให้ลูกค้าใช้งานต่อได้ปกติ
+            });
+        }
+
         function toggleMobileMenu() {
             var nav = document.getElementById("navLinks");
             nav.classList.toggle("active");
