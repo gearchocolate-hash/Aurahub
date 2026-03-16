@@ -30,15 +30,23 @@
         .logo-img { height: 45px; width: auto; }
         .logo-text { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--primary-navy); letter-spacing: 1px; }
 
-        /* Mobile Menu Button */
         .mobile-menu-btn { display: none; font-size: 28px; cursor: pointer; color: var(--primary-navy); }
 
         .nav-links { list-style: none; display: flex; gap: 30px; align-items: center; }
         .nav-links li a { text-decoration: none; color: var(--primary-navy); font-weight: 500; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s; }
         .nav-links li a:hover { color: var(--luxury-gold); }
         
+        .auth-btn { text-decoration: none; color: var(--primary-navy); font-weight: 600; font-size: 13px; border: 1.5px solid var(--luxury-gold); padding: 8px 20px; border-radius: 4px; transition: all 0.3s; display: inline-block; }
+        .auth-btn:hover { background-color: var(--luxury-gold); color: var(--white); }
+
         .member-info { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: var(--primary-navy); border-left: 2px solid var(--luxury-gold); padding-left: 15px; }
         .member-status { background: var(--luxury-gold); color: var(--primary-navy); padding: 2px 8px; border-radius: 20px; font-size: 10px; text-transform: uppercase; }
+
+        /* ปุ่ม Logout */
+        .logout-btn { background: none; border: none; color: #ff4d4d; font-size: 11px; font-weight: 600; cursor: pointer; text-decoration: underline; padding-left: 5px; font-family: 'Montserrat', sans-serif; }
+        .logout-btn:hover { color: #cc0000; }
+
+        .ai-badge { display: inline-block; background: var(--primary-navy); color: var(--luxury-gold); font-size: 10px; padding: 2px 8px; border-radius: 20px; margin-left: 5px; font-weight: 700; }
 
         /* HERO BANNER SECTION */
         .promo-hero {
@@ -90,7 +98,8 @@
             .mobile-menu-btn { display: block; }
             .nav-links { display: none; width: 100%; flex-direction: column; align-items: flex-start; gap: 15px; padding-top: 15px; margin-top: 15px; border-top: 1px solid #eee; }
             .nav-links.active { display: flex; }
-            .member-info { width: 100%; border-left: none; padding-left: 0; margin-top: 10px; justify-content: space-between; }
+            .member-info { width: 100%; border-left: none; padding-left: 0; justify-content: space-between; flex-wrap: wrap; }
+            .auth-btn { display: block; width: 100%; text-align: center; margin-top: 10px; }
             .promo-hero { height: 350px; justify-content: center; text-align: center; padding: 0 20px; }
             .promo-hero::before { background: rgba(255,255,255,0.6); }
             .promo-hero-text { text-align: center; }
@@ -124,11 +133,11 @@
 
             <ul class="nav-links" id="navLinks">
                 <li><a href="promotion.html" style="color: var(--luxury-gold); font-weight: 700;">Promotions</a></li>
-                <li><a href="register.html">AI Aesthetic</a></li>
+                <li><a href="register.html">AI Aesthetic <span class="ai-badge">MEMBER ONLY</span></a></li>
                 <li><a href="index.html#join">Join Us</a></li>
                 
-                <li class="member-info" id="memberInfoDisplay">
-                    <a href="register.html" style="background: var(--luxury-gold); color: var(--primary-navy); padding: 8px 15px; border-radius: 4px; font-weight: 700; font-size: 12px; text-decoration: none;">LOGIN / REGISTER</a>
+                <li id="memberInfoDisplay" style="width: 100%;">
+                    <a href="register.html" class="auth-btn">Login / Register</a>
                 </li>
             </ul>
         </div>
@@ -200,34 +209,38 @@
     <script>
         const GAS_URL = 'https://script.google.com/macros/s/AKfycbxVwQNS9mE4ngyIWGAmuiQbxVYm-f_qN86WJT-1JjHiOcCv1eYB5pHELEp2zGht9fEl/exec';
 
-        // 1. ระบบเช็คสถานะการเข้าสู่ระบบ (เมื่อโหลดหน้าเว็บ)
+        function toggleMobileMenu() {
+            var nav = document.getElementById("navLinks");
+            nav.classList.toggle("active");
+        }
+
+        // 1. ระบบเช็คสถานะการเข้าสู่ระบบ + โชว์ปุ่ม Logout
         document.addEventListener("DOMContentLoaded", () => {
             const memberId = localStorage.getItem('auraHubMemberId');
             const memberInfoBox = document.getElementById('memberInfoDisplay');
             
             if (memberId) {
-                // ถ้ามี ID อยู่ในเครื่อง ให้แสดงรหัส VIP ของลูกค้า
-                memberInfoBox.style.borderLeft = "2px solid var(--luxury-gold)";
-                memberInfoBox.innerHTML = `<span>Member: <strong>${memberId}</strong></span><span class="member-status">VIP</span>`;
-            } else {
-                // ถ้าไม่มี ให้เอาเส้นขอบออก (ปล่อยปุ่ม Login ไว้เหมือนเดิม)
-                memberInfoBox.style.borderLeft = "none";
+                memberInfoBox.style.width = "auto";
+                memberInfoBox.className = "member-info";
+                memberInfoBox.innerHTML = `
+                    <span>Member: <strong>${memberId}</strong></span>
+                    <span class="member-status">VIP</span>
+                    <button onclick="logout()" class="logout-btn">Logout</button>
+                `;
             }
         });
 
-        // 2. ระบบส่งข้อมูล Tracking เข้า Google Sheet
+        // 2. ระบบดักจับการคลิกแล้วยิงเข้า GAS
         function trackAndGo(e, linkCode, destinationUrl) {
-            e.preventDefault(); // หยุดการเปลี่ยนหน้าเว็บทันที เพื่อส่งข้อมูลก่อน
+            e.preventDefault(); 
             
             const memberId = localStorage.getItem('auraHubMemberId') || 'GUEST';
             
-            // เตรียมข้อมูลส่งไปที่ Apps Script
             const formData = new FormData();
             formData.append('action', 'track');
             formData.append('memberId', memberId);
             formData.append('linkCode', linkCode); // โค้ด P1, P2, P3
-            
-            // ฟังก์ชันบังคับเด้งหน้าใหม่ (ป้องกันเว็บค้าง)
+
             let isRedirected = false;
             const doRedirect = () => {
                 if(!isRedirected) {
@@ -236,23 +249,17 @@
                 }
             };
 
-            // บังคับเปลี่ยนหน้าภายใน 1 วินาที (เผื่อเน็ตลูกค้าช้า)
             setTimeout(doRedirect, 1000);
 
-            // ยิงข้อมูลไปที่ Google Sheet แบบลับๆ
-            fetch(GAS_URL, {
-                method: 'POST',
-                body: formData
-            }).then(() => {
-                doRedirect(); // ส่งเสร็จปุ๊บ เด้งหน้าใหม่ทันที
-            }).catch(() => {
-                doRedirect(); // แม้จะ Error ก็ให้ลูกค้าใช้งานต่อได้ปกติ
-            });
+            fetch(GAS_URL, { method: 'POST', body: formData })
+            .then(() => doRedirect())
+            .catch(() => doRedirect());
         }
 
-        function toggleMobileMenu() {
-            var nav = document.getElementById("navLinks");
-            nav.classList.toggle("active");
+        // 3. ฟังก์ชัน Logout
+        function logout() {
+            localStorage.removeItem('auraHubMemberId');
+            window.location.reload();
         }
     </script>
 </body>
