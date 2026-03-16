@@ -56,7 +56,6 @@
             letter-spacing: 1px;
         }
 
-        /* ปุ่มเมนูสำหรับมือถือ (Hamburger Menu) */
         .mobile-menu-btn {
             display: none;
             font-size: 28px;
@@ -99,7 +98,6 @@
             color: var(--white);
         }
 
-        /* CSS สำหรับแสดงสถานะ Member VIP */
         .member-info { 
             display: flex; 
             align-items: center; 
@@ -119,7 +117,6 @@
             text-transform: uppercase; 
         }
 
-        /* Hero Section */
         .hero {
             height: 60vh;
             background: linear-gradient(rgba(10, 25, 47, 0.7), rgba(10, 25, 47, 0.7)), 
@@ -135,7 +132,6 @@
         .hero h1 { font-size: 48px; margin-bottom: 20px; letter-spacing: 2px; }
         .hero p { font-size: 18px; font-weight: 300; max-width: 700px; line-height: 1.6; }
 
-        /* Main Selection Section */
         .selection-section { padding: 80px 5%; max-width: 1200px; margin: 0 auto; }
         .section-header { text-align: center; margin-bottom: 50px; }
         .section-header h2 { font-size: 36px; color: var(--primary-navy); margin-bottom: 15px; }
@@ -180,6 +176,7 @@
             padding: 8px 0;
             font-size: 15px;
             transition: all 0.3s;
+            cursor: pointer;
         }
         .btn-item:hover { color: var(--primary-navy); padding-left: 5px; font-weight: 500; }
 
@@ -194,49 +191,28 @@
             font-weight: 700;
         }
 
-        /* -------------------------------------- */
-        /* MOBILE RESPONSIVE STYLES               */
-        /* -------------------------------------- */
         @media (max-width: 768px) {
             .mobile-menu-btn { display: block; }
-
-            .nav-links {
-                display: none; 
-                width: 100%;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-                padding-top: 15px;
-                margin-top: 15px;
-                border-top: 1px solid #eee;
-            }
-
+            .nav-links { display: none; width: 100%; flex-direction: column; align-items: flex-start; gap: 15px; padding-top: 15px; margin-top: 15px; border-top: 1px solid #eee; }
             .nav-links.active { display: flex; }
-            
-            /* ปรับกล่อง Member info ให้พอดีบนมือถือ */
             .member-info { width: 100%; border-left: none; padding-left: 0; justify-content: space-between; }
             .auth-btn { display: block; width: 100%; text-align: center; margin-top: 10px; }
-
             .hero { height: 50vh; }
             .hero h1 { font-size: 32px; }
             .hero p { font-size: 15px; }
-
             .selection-section { padding: 40px 5%; }
             .section-header h2 { font-size: 28px; }
-
             .service-container { grid-template-columns: 1fr; gap: 20px; }
             .service-image { height: 300px; box-shadow: 10px 10px 0px var(--luxury-gold); }
             .select-box { padding: 25px; }
             .select-grid { grid-template-columns: 1fr; }
         }
-
     </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-J1WJKHDS0X"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-J1WJKHDS0X');
 </script>
 </head>
@@ -252,7 +228,7 @@
             <div class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</div>
 
             <ul class="nav-links" id="navLinks">
-                <li><a href="promotion.html">Promotions</a></li>
+                <li><a href="promotion.html" onclick="trackAndGo(event, 'NAV_PROMO', 'promotion.html')">Promotions</a></li>
                 <li><a href="register.html" style="color: var(--luxury-gold); font-weight: 700;">AI Aesthetic <span class="ai-badge">MEMBER ONLY</span></a></li>
                 <li><a href="#join">Join Us</a></li>
                 <li id="memberInfoDisplay" style="width: 100%;">
@@ -283,32 +259,32 @@
                 <div class="select-grid">
                     <div class="select-group">
                         <div class="group-title">Facial Surgery</div>
-                        <a href="search.html" class="btn-item">› Rhinoplasty (Nose)</a>
-                        <a href="search.html" class="btn-item">› Blepharoplasty (Eyes)</a>
-                        <a href="search.html" class="btn-item">› Facelift</a>
-                        <a href="search.html" class="btn-item">› Facial Contouring</a>
+                        <a href="search.html" class="btn-item" onclick="trackAndGo(event, 'F1', 'search.html')">› Rhinoplasty (Nose)</a>
+                        <a href="search.html" class="btn-item" onclick="trackAndGo(event, 'F2', 'search.html')">› Blepharoplasty (Eyes)</a>
+                        <a href="search.html" class="btn-item" onclick="trackAndGo(event, 'F3', 'search.html')">› Facelift</a>
+                        <a href="search.html" class="btn-item" onclick="trackAndGo(event, 'F4', 'search.html')">› Facial Contouring</a>
                     </div>
                     
                     <div class="select-group">
                         <div class="group-title">Body Surgery</div>
-                        <a href="search.html" class="btn-item">› Breast Augmentation</a>
-                        <a href="search.html" class="btn-item">› Liposuction</a>
-                        <a href="search.html" class="btn-item">› Tummy Tuck</a>
-                        <a href="search.html" class="btn-item">› Buttock Augmentation</a>
+                        <a href="search.html" class="btn-item" onclick="trackAndGo(event, 'B1', 'search.html')">› Breast Augmentation</a>
+                        <a href="search.html" class="btn-item" onclick="trackAndGo(event, 'B2', 'search.html')">› Liposuction</a>
+                        <a href="search.html" class="btn-item" onclick="trackAndGo(event, 'B3', 'search.html')">› Tummy Tuck</a>
+                        <a href="search.html" class="btn-item" onclick="trackAndGo(event, 'B4', 'search.html')">› Buttock Augmentation</a>
                     </div>
 
                     <div class="select-group">
                         <div class="group-title">Anti-Aging & Skin</div>
-                        <a href="search.html" class="btn-item">› Thermage / Ultherapy</a>
-                        <a href="search.html" class="btn-item">› Stem Cell Therapy</a>
-                        <a href="search.html" class="btn-item">› Premium Injections</a>
+                        <a href="search.html" class="btn-item" onclick="trackAndGo(event, 'A1', 'search.html')">› Thermage / Ultherapy</a>
+                        <a href="search.html" class="btn-item" onclick="trackAndGo(event, 'A2', 'search.html')">› Stem Cell Therapy</a>
+                        <a href="search.html" class="btn-item" onclick="trackAndGo(event, 'A3', 'search.html')">› Premium Injections</a>
                     </div>
 
                     <div class="select-group">
                         <div class="group-title">Specialized</div>
-                        <a href="search.html" class="btn-item">› Revision Surgery</a>
-                        <a href="search.html" class="btn-item">› Gender Affirmation</a>
-                        <a href="search.html" class="btn-item">› Hair Transplantation</a>
+                        <a href="search.html" class="btn-item" onclick="trackAndGo(event, 'S1', 'search.html')">› Revision Surgery</a>
+                        <a href="search.html" class="btn-item" onclick="trackAndGo(event, 'S2', 'search.html')">› Gender Affirmation</a>
+                        <a href="search.html" class="btn-item" onclick="trackAndGo(event, 'S3', 'search.html')">› Hair Transplantation</a>
                     </div>
                 </div>
             </div>
@@ -316,24 +292,50 @@
     </section>
 
     <script>
+        const GAS_URL = 'https://script.google.com/macros/s/AKfycbxVwQNS9mE4ngyIWGAmuiQbxVYm-f_qN86WJT-1JjHiOcCv1eYB5pHELEp2zGht9fEl/exec';
+
         function toggleMobileMenu() {
             var nav = document.getElementById("navLinks");
             nav.classList.toggle("active");
         }
 
-        // เช็คว่ามีข้อมูล Login อยู่หรือไม่ตอนโหลดหน้าเว็บ
+        // โชว์ข้อมูล Member VIP จาก Local Storage
         document.addEventListener("DOMContentLoaded", () => {
             const memberId = localStorage.getItem('auraHubMemberId');
             const memberInfoBox = document.getElementById('memberInfoDisplay');
             
             if (memberId) {
-                // เอา width: 100% ออกเพื่อไม่ให้ปุ่มกินพื้นที่เต็ม
                 memberInfoBox.style.width = "auto";
-                // เปลี่ยนเป็นแสดง ID แทน
                 memberInfoBox.className = "member-info";
                 memberInfoBox.innerHTML = `<span>Member: <strong>${memberId}</strong></span><span class="member-status">VIP</span>`;
             }
         });
+
+        // ฟังก์ชันดักจับการคลิกแล้วยิงเข้า GAS
+        function trackAndGo(e, linkCode, destinationUrl) {
+            e.preventDefault(); 
+            
+            const memberId = localStorage.getItem('auraHubMemberId') || 'GUEST';
+            
+            const formData = new FormData();
+            formData.append('action', 'track');
+            formData.append('memberId', memberId);
+            formData.append('linkCode', linkCode); 
+
+            let isRedirected = false;
+            const doRedirect = () => {
+                if(!isRedirected) {
+                    isRedirected = true;
+                    window.location.href = destinationUrl;
+                }
+            };
+
+            setTimeout(doRedirect, 1000); // ดีเลย์ 1 วิ เผื่อยิงข้อมูลช้า
+
+            fetch(GAS_URL, { method: 'POST', body: formData })
+            .then(() => doRedirect())
+            .catch(() => doRedirect());
+        }
     </script>
 </body>
 </html>
