@@ -43,9 +43,13 @@
         .nav-links li a { text-decoration: none; color: var(--primary-navy); font-weight: 500; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s; }
         .nav-links li a:hover { color: var(--luxury-gold); }
         
-        /* Member Info */
+        /* ปุ่ม Login / Member Info / Logout */
+        .auth-btn { text-decoration: none; color: var(--primary-navy); font-weight: 600; font-size: 13px; border: 1.5px solid var(--luxury-gold); padding: 8px 20px; border-radius: 4px; transition: all 0.3s; display: inline-block; }
+        .auth-btn:hover { background-color: var(--luxury-gold); color: var(--white); }
         .member-info { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: var(--primary-navy); border-left: 2px solid var(--luxury-gold); padding-left: 15px; }
         .member-status { background: var(--luxury-gold); color: var(--primary-navy); padding: 2px 8px; border-radius: 20px; font-size: 10px; text-transform: uppercase; }
+        .logout-btn { background: none; border: none; color: #ff4d4d; font-size: 11px; font-weight: 600; cursor: pointer; text-decoration: underline; padding-left: 5px; font-family: 'Montserrat', sans-serif; }
+        .logout-btn:hover { color: #cc0000; }
 
         /* Page Layout */
         .page-header { background: var(--primary-navy); color: var(--white); padding: 40px 20px; text-align: center; }
@@ -119,6 +123,7 @@
                 margin-top: 10px; 
                 justify-content: space-between; 
             }
+            .auth-btn { display: block; width: 100%; text-align: center; margin-top: 10px; }
 
             .page-header { padding: 30px 20px; }
             .page-title { font-size: 26px; }
@@ -153,7 +158,6 @@
             }
         }
     </style>
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-J1WJKHDS0X"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -175,12 +179,11 @@
             <div class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</div>
 
             <ul class="nav-links" id="navLinks">
-                <li><a href="index.html#promotions">Promotions</a></li>
+                <li><a href="promotion.html">Promotions</a></li>
                 <li><a href="register.html">AI Aesthetic</a></li>
                 <li><a href="index.html#join">Join Us</a></li>
-                <li class="member-info">
-                    <span>Member: <strong id="memberDisplayName">AU7X9284</strong></span>
-                    <span class="member-status">VIP</span>
+                <li id="memberInfoDisplay" style="width: 100%;">
+                    <a href="register.html" class="auth-btn">Login / Register</a>
                 </li>
             </ul>
         </div>
@@ -299,12 +302,35 @@
     </div>
 
     <script>
+        // 1. ระบบเช็คสถานะการเข้าสู่ระบบ + โชว์ปุ่ม Logout
+        document.addEventListener("DOMContentLoaded", () => {
+            const memberId = localStorage.getItem('auraHubMemberId');
+            const memberInfoBox = document.getElementById('memberInfoDisplay');
+            
+            if (memberId) {
+                memberInfoBox.style.width = "auto";
+                memberInfoBox.className = "member-info";
+                memberInfoBox.innerHTML = `
+                    <span>Member: <strong>${memberId}</strong></span>
+                    <span class="member-status">VIP</span>
+                    <button onclick="logout()" class="logout-btn">Logout</button>
+                `;
+            }
+        });
+
+        // 2. ฟังก์ชัน Logout
+        function logout() {
+            localStorage.removeItem('auraHubMemberId');
+            window.location.reload();
+        }
+
         // ฟังก์ชันเปิด-ปิดเมนูบนมือถือ
         function toggleMobileMenu() {
             var nav = document.getElementById("navLinks");
             nav.classList.toggle("active");
         }
 
+        // Logic การคำนวณราคา (คงเดิม ไม่มีการส่ง Tracking)
         let currentHotelPrice = 0;
         let currentHotelName = '3-Star Boutique';
         let currentCarName = 'Toyota Camry';
@@ -331,16 +357,13 @@
             let days = parseInt(document.getElementById('carDays').value) || 1;
             let totalCarPrice = 0;
 
-            // Logic คิดราคารถ
             if (currentCarName === 'Toyota Camry') {
                 if (days > 2) {
-                    // ฟรี 2 วันแรก วันที่เกินมาคิด 2,000 บาท/วัน
                     totalCarPrice = (days - 2) * 2000;
                 } else {
                     totalCarPrice = 0;
                 }
             } else if (currentCarName === 'Toyota Alphard') {
-                // Alphard คิด 2,500 บาท ทุกวัน
                 totalCarPrice = days * 2500;
             } else {
                 totalCarPrice = 0;
@@ -348,12 +371,10 @@
 
             let totalOverall = currentHotelPrice + totalCarPrice;
 
-            // อัปเดต UI ฝั่งโรงแรม
             let hotelText = `Hotel: ${currentHotelName}`;
             let hotelPriceText = currentHotelPrice === 0 ? '<span class="text-success">Included</span>' : `+ ${currentHotelPrice.toLocaleString()} THB`;
             document.getElementById('sum-hotel').innerHTML = `<span>${hotelText}</span><span class="price">${hotelPriceText}</span>`;
 
-            // อัปเดต UI ฝั่งรถ
             let carText = currentCarName === 'No Transport' ? 'Car: None' : `Car: ${currentCarName} (${days} Days)`;
             let carPriceText;
             if (currentCarName === 'No Transport') {
@@ -363,7 +384,6 @@
             }
             document.getElementById('sum-car').innerHTML = `<span>${carText}</span><span class="price">${carPriceText}</span>`;
 
-            // อัปเดตยอดรวม
             document.getElementById('totalCost').innerText = `${totalOverall.toLocaleString()} THB`;
         }
     </script>
