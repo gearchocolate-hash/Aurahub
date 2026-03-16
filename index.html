@@ -106,7 +106,7 @@
             font-weight: 600; 
             color: var(--primary-navy); 
             border-left: 2px solid var(--luxury-gold); 
-            padding-left: 15px; 
+            padding-left: 15px; trung
         }
         .member-status { 
             background: var(--luxury-gold); 
@@ -116,6 +116,20 @@
             font-size: 10px; 
             text-transform: uppercase; 
         }
+
+        /* ปุ่ม Logout */
+        .logout-btn {
+            background: none;
+            border: none;
+            color: #ff4d4d;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: underline;
+            padding-left: 5px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .logout-btn:hover { color: #cc0000; }
 
         .hero {
             height: 60vh;
@@ -195,7 +209,7 @@
             .mobile-menu-btn { display: block; }
             .nav-links { display: none; width: 100%; flex-direction: column; align-items: flex-start; gap: 15px; padding-top: 15px; margin-top: 15px; border-top: 1px solid #eee; }
             .nav-links.active { display: flex; }
-            .member-info { width: 100%; border-left: none; padding-left: 0; justify-content: space-between; }
+            .member-info { width: 100%; border-left: none; padding-left: 0; justify-content: space-between; flex-wrap: wrap; }
             .auth-btn { display: block; width: 100%; text-align: center; margin-top: 10px; }
             .hero { height: 50vh; }
             .hero h1 { font-size: 32px; }
@@ -307,7 +321,12 @@
             if (memberId) {
                 memberInfoBox.style.width = "auto";
                 memberInfoBox.className = "member-info";
-                memberInfoBox.innerHTML = `<span>Member: <strong>${memberId}</strong></span><span class="member-status">VIP</span>`;
+                // เพิ่มปุ่ม Logout ต่อท้าย
+                memberInfoBox.innerHTML = `
+                    <span>Member: <strong>${memberId}</strong></span>
+                    <span class="member-status">VIP</span>
+                    <button onclick="logout()" class="logout-btn">Logout</button>
+                `;
             }
         });
 
@@ -330,11 +349,17 @@
                 }
             };
 
-            setTimeout(doRedirect, 1000); // ดีเลย์ 1 วิ เผื่อยิงข้อมูลช้า
+            setTimeout(doRedirect, 1000);
 
             fetch(GAS_URL, { method: 'POST', body: formData })
             .then(() => doRedirect())
             .catch(() => doRedirect());
+        }
+
+        // ฟังก์ชัน Logout (ล้างข้อมูลและรีเฟรชหน้า)
+        function logout() {
+            localStorage.removeItem('auraHubMemberId');
+            window.location.reload();
         }
     </script>
 </body>
