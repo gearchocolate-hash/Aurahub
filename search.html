@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find Doctor | AuraHub Member Area</title>
+    <title>Find Your Specialist | AuraHub Premium</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
@@ -28,17 +28,15 @@
         .logo-img { height: 45px; }
         .logo-text { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--primary-navy); }
 
-        /* Mobile Menu Button */
         .mobile-menu-btn { display: none; font-size: 28px; cursor: pointer; color: var(--primary-navy); }
 
-        /* Tab ด้านบน */
         .nav-links { list-style: none; display: flex; gap: 30px; align-items: center; }
         .nav-links li a { text-decoration: none; color: var(--primary-navy); font-weight: 500; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s; }
         .nav-links li a:hover { color: var(--luxury-gold); }
 
-        /* ปุ่ม Login / Member Info / Logout */
         .auth-btn { text-decoration: none; color: var(--primary-navy); font-weight: 600; font-size: 13px; border: 1.5px solid var(--luxury-gold); padding: 8px 20px; border-radius: 4px; transition: all 0.3s; display: inline-block; }
         .auth-btn:hover { background-color: var(--luxury-gold); color: var(--white); }
+        
         .member-info { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: var(--primary-navy); border-left: 2px solid var(--luxury-gold); padding-left: 15px; }
         .member-status { background: var(--luxury-gold); color: var(--primary-navy); padding: 2px 8px; border-radius: 20px; font-size: 10px; text-transform: uppercase; }
         .logout-btn { background: none; border: none; color: #ff4d4d; font-size: 11px; font-weight: 600; cursor: pointer; text-decoration: underline; padding-left: 5px; font-family: 'Montserrat', sans-serif; }
@@ -54,22 +52,29 @@
         .filter-btn.active { background: var(--luxury-gold); color: var(--primary-navy); font-weight: 700; }
 
         .main-container { display: flex; gap: 40px; max-width: 1400px; margin: 40px auto; padding: 0 5%; }
-        .hospital-list { width: 320px; flex-shrink: 0; display: flex; flex-direction: column; gap: 15px; }
+        .hospital-list { width: 350px; flex-shrink: 0; display: flex; flex-direction: column; gap: 15px; }
+        
         .hospital-card { background: var(--white); border: 1px solid #E0E0E0; border-radius: 8px; padding: 20px; cursor: pointer; transition: 0.3s; display: none; }
         .hospital-card.visible { display: block; }
         .hospital-card.active { border-color: var(--luxury-gold); background-color: rgba(212, 175, 55, 0.05); border-left: 5px solid var(--luxury-gold); }
-        .hosp-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; }
-        .badge-cert { color: var(--luxury-gold); font-size: 11px; font-weight: 600; text-transform: uppercase; }
+        .hospital-card h3 { font-size: 18px; margin-bottom: 5px; color: var(--primary-navy); }
+        .hospital-card p { font-size: 12px; color: #666; }
 
         .doctor-display { flex: 1; }
-        .doctor-grid { display: none; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .doctor-grid { display: none; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         .doctor-grid.active { display: grid; }
-        .doc-card { background: var(--white); border-radius: 8px; border: 1px solid #E0E0E0; overflow: hidden; transition: 0.3s; }
+        
+        .doc-card { background: var(--white); border-radius: 8px; border: 1px solid #E0E0E0; overflow: hidden; transition: 0.3s; display: flex; flex-direction: column; }
         .doc-card:hover { border-color: var(--luxury-gold); transform: translateY(-5px); }
-        .doc-img { width: 100%; height: 220px; background: #eee center/cover; }
-        .doc-info { padding: 20px; }
+        .doc-img { width: 100%; height: 250px; background-color: #eee; background-size: cover; background-position: center; }
+        .doc-info { padding: 20px; flex-grow: 1; }
+        .doc-name { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; margin-bottom: 5px; color: var(--primary-navy); }
+        .doc-spec { font-size: 13px; color: var(--luxury-gold); font-weight: 600; margin-bottom: 15px; text-transform: uppercase; }
+        
         .btn-view-profile { display: block; text-align: center; padding: 10px; border: 1px solid var(--luxury-gold); color: var(--luxury-gold); text-decoration: none; font-size: 12px; font-weight: 700; margin-bottom: 15px; border-radius: 4px; transition: 0.3s; }
         .btn-view-profile:hover { background: var(--luxury-gold); color: var(--white); }
+
+        .select-doc { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 500; }
 
         .slide-over-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--overlay); z-index: 2000; visibility: hidden; opacity: 0; transition: 0.4s; }
         .slide-over-overlay.active { visibility: visible; opacity: 1; }
@@ -78,30 +83,20 @@
         .close-slide { position: absolute; top: 20px; left: 20px; cursor: pointer; font-size: 24px; }
 
         .bottom-action { margin-top: 40px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #ddd; padding-top: 20px; }
-        .btn-next { background: var(--primary-navy); color: var(--white); padding: 15px 40px; text-decoration: none; border-radius: 4px; font-weight: 700; }
+        .btn-next { background: var(--primary-navy); color: var(--white); padding: 15px 40px; text-decoration: none; border-radius: 4px; font-weight: 700; transition: 0.3s; }
+        .btn-next:hover { background: var(--luxury-gold); color: var(--primary-navy); }
 
-        /* Responsive Mobile Styles */
         @media (max-width: 768px) {
             .mobile-menu-btn { display: block; }
             .nav-links { display: none; width: 100%; flex-direction: column; align-items: flex-start; gap: 15px; padding-top: 15px; margin-top: 15px; border-top: 1px solid #eee; }
             .nav-links.active { display: flex; }
             .member-info { width: 100%; border-left: none; padding-left: 0; justify-content: space-between; flex-wrap: wrap; margin-top: 10px;}
-            .auth-btn { display: block; width: 100%; text-align: center; margin-top: 10px; }
-            
             .main-container { flex-direction: column; gap: 20px; }
             .hospital-list { width: 100%; flex-direction: row; overflow-x: auto; padding-bottom: 10px; }
-            .hospital-card { min-width: 250px; }
+            .hospital-card { min-width: 280px; }
             .slide-over-panel { width: 100%; right: -100%; }
         }
     </style>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-J1WJKHDS0X"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-J1WJKHDS0X');
-</script>
 </head>
 <body>
 
@@ -111,14 +106,11 @@
                 <img src="image_c8fa02.jpg" alt="AuraHub Logo" class="logo-img">
                 <span class="logo-text">AuraHub</span>
             </a>
-            
             <div class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</div>
-
             <ul class="nav-links" id="navLinks">
                 <li><a href="promotion.html">Promotions</a></li>
                 <li><a href="register.html">AI Aesthetic</a></li>
                 <li><a href="index.html#join">Join Us</a></li>
-                
                 <li id="memberInfoDisplay" style="width: 100%;">
                     <a href="register.html" class="auth-btn">Login / Register</a>
                 </li>
@@ -128,155 +120,226 @@
 
     <div class="search-section">
         <div class="search-container">
-            <input type="text" class="search-input" placeholder="Search Hospital or Specialist...">
+            <input type="text" class="search-input" placeholder="Search Hospital, Clinic or Specialist...">
             <button class="search-btn">Search</button>
         </div>
         <div class="filter-toggle">
-            <button class="filter-btn active" onclick="filterType('hospital', this)">Hospitals (JCI)</button>
-            <button class="filter-btn" onclick="filterType('clinic', this)">Clinics (Board Certified)</button>
+            <button class="filter-btn active" onclick="filterType('hospital', this)">Hospitals (JCI Accredited)</button>
+            <button class="filter-btn" onclick="filterType('clinic', this)">Elite Clinics</button>
         </div>
     </div>
 
     <div class="main-container">
         <aside class="hospital-list">
-            <div class="hospital-card visible active" data-type="hospital" onclick="showDoctors('masterpiece', this)">
-                <span class="badge-cert">★ JCI Accredited</span>
-                <div class="hosp-name">Masterpiece Hospital</div>
-            </div>
-            <div class="hospital-card visible" data-type="hospital" onclick="showDoctors('yanhee', this)">
-                <span class="badge-cert">★ JCI Accredited</span>
-                <div class="hosp-name">Yanhee Hospital</div>
-            </div>
-            <div class="hospital-card visible" data-type="hospital" onclick="showDoctors('bumrungrad', this)">
-                <span class="badge-cert">★ JCI World Class</span>
-                <div class="hosp-name">Bumrungrad International</div>
-            </div>
-            <div class="hospital-card" data-type="clinic" onclick="showDoctors('apex', this)">
-                <span class="badge-cert">★ Board Certified</span>
-                <div class="hosp-name">Apex Medical Center</div>
-            </div>
-            <div class="hospital-card" data-type="clinic" onclick="showDoctors('the-clinic', this)">
-                <span class="badge-cert">★ Award Winning Clinic</span>
-                <div class="hosp-name">The Klinique</div>
-            </div>
-        </aside>
+    <div class="hospital-card visible active" data-type="hospital" onclick="showDoctors('idl', this)">
+        <h3>IDL Hospital</h3>
+        <p>🏆 Specialist: Breast, Eyelid, V-Shape</p>
+    </div>
+    <div class="hospital-card visible" data-type="hospital" onclick="showDoctors('masterpiece', this)">
+        <h3>Masterpiece Hospital</h3>
+        <p>👃 Specialist: Open Rhinoplasty, Liposuction, Eyes</p>
+    </div>
+    <div class="hospital-card visible" data-type="hospital" onclick="showDoctors('kamol', this)">
+        <h3>Kamol Hospital</h3>
+        <p>🏳️‍⚧️ Specialist: GRS, Facial Feminization</p>
+    </div>
+    <div class="hospital-card visible" data-type="hospital" onclick="showDoctors('lelux', this)">
+        <h3>Lelux Hospital</h3>
+        <p>🍒 Specialist: Breast, Nose, Skin</p>
+    </div>
+    <div class="hospital-card visible" data-type="hospital" onclick="showDoctors('bangmod', this)">
+        <h3>Bangmod Hospital</h3>
+        <p>👤 Specialist: Facelift (Bangmod Technique), Breast</p>
+    </div>
+    <div class="hospital-card visible" data-type="hospital" onclick="showDoctors('yanhee', this)">
+        <h3>Yanhee Hospital</h3>
+        <p>🏥 Specialist: Full Service, GRS, Dental Center</p>
+    </div>
+    <div class="hospital-card visible" data-type="hospital" onclick="showDoctors('wansiri', this)">
+        <h3>Wansiri Hospital</h3>
+        <p>✨ Specialist: Premium Surgery, Open Rhinoplasty, Breast</p>
+    </div>
+
+    <div class="hospital-card" data-type="clinic" onclick="showDoctors('meko', this)">
+        <h3>Meko Clinic</h3>
+        <p>👃 Specialist: Revision Nose, Eyes, Skin Laser</p>
+    </div>
+    <div class="hospital-card" data-type="clinic" onclick="showDoctors('nopparat', this)">
+        <h3>Nopparat Clinic</h3>
+        <p>🎖️ Specialist: Barbie Nose, Breast Augmentation</p>
+    </div>
+    <div class="hospital-card" data-type="clinic" onclick="showDoctors('goodview', this)">
+        <h3>Goodview Clinic</h3>
+        <p>💉 Specialist: Facial Design, Skin Injection, Aesthetic</p>
+    </div>
+</aside>
 
         <div class="doctor-display">
-            <div id="masterpiece" class="doctor-grid active">
-                <div class="doc-card">
-                    <div class="doc-img" style="background-image: url('https://images.unsplash.com/photo-1612349317150-e410f624c427?q=80&w=400');"></div>
-                    <div class="doc-info">
-                        <div class="doc-name">Dr. Kosit E.</div>
-                        <div class="doc-spec">Open Rhinoplasty Specialist</div>
-                        <a href="#" class="btn-view-profile" onclick="openSlideOver('Dr. Kosit E.', 'Masterpiece Hospital')">View Reviews</a>
-                        <label class="select-doc"><input type="radio" name="d" checked> Select This Doctor</label>
-                    </div>
-                </div>
-            </div>
-
-            <div id="yanhee" class="doctor-grid">
-                <div class="doc-card">
-                    <div class="doc-img" style="background-image: url('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=400');"></div>
-                    <div class="doc-info">
-                        <div class="doc-name">Dr. San P.</div>
-                        <div class="doc-spec">Gender Affirmation Specialist</div>
-                        <a href="#" class="btn-view-profile" onclick="openSlideOver('Dr. San P.', 'Yanhee Hospital')">View Reviews</a>
-                        <label class="select-doc"><input type="radio" name="d"> Select This Doctor</label>
-                    </div>
-                </div>
-            </div>
-
-            <div id="bumrungrad" class="doctor-grid">
-                <div class="doc-card">
-                    <div class="doc-img" style="background-image: url('https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=400');"></div>
-                    <div class="doc-info">
-                        <div class="doc-name">Dr. Somchai T.</div>
-                        <div class="doc-spec">Board Certified Plastic Surgeon</div>
-                        <a href="#" class="btn-view-profile" onclick="openSlideOver('Dr. Somchai T.', 'Bumrungrad Hospital')">View Reviews</a>
-                        <label class="select-doc"><input type="radio" name="d"> Select This Doctor</label>
-                    </div>
-                </div>
-            </div>
-
-            <div id="apex" class="doctor-grid">
-                <div class="doc-card">
-                    <div class="doc-img" style="background-image: url('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=400');"></div>
-                    <div class="doc-info">
-                        <div class="doc-name">Dr. Nantapat S.</div>
-                        <div class="doc-spec">Dermatology & Laser Specialist</div>
-                        <a href="#" class="btn-view-profile" onclick="openSlideOver('Dr. Nantapat S.', 'Apex Medical Center')">View Reviews</a>
-                        <label class="select-doc"><input type="radio" name="d"> Select This Doctor</label>
-                    </div>
-                </div>
-            </div>
-
-            <div id="the-clinic" class="doctor-grid">
-                <div class="doc-card">
-                    <div class="doc-img" style="background-image: url('https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=400');"></div>
-                    <div class="doc-info">
-                        <div class="doc-name">Dr. Rushapol L.</div>
-                        <div class="doc-spec">Anti-Aging Specialist</div>
-                        <a href="#" class="btn-view-profile" onclick="openSlideOver('Dr. Rushapol L.', 'The Klinique')">View Reviews</a>
-                        <label class="select-doc"><input type="radio" name="d"> Select This Doctor</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bottom-action">
-                <p>Proceed to customize your luxury travel package.</p>
-                <a href="options.html" class="btn-next">Next: Customize Package ➔</a>
+    <div id="idl" class="doctor-grid active">
+        <div class="doc-card">
+            <div class="doc-img" style="background-image: url('https://images.unsplash.com/photo-1612349317150-e410f624c427?q=80&w=400');"></div>
+            <div class="doc-info">
+                <div class="doc-name">Dr. Chatpon O.</div>
+                <div class="doc-spec">Breast Augmentation Specialist</div>
+                <a href="#" class="btn-view-profile" onclick="openSlideOver('Dr. Chatpon O.', 'IDL Hospital')">Case Reviews</a>
+                <label class="select-doc"><input type="radio" name="d" checked> Select Specialist</label>
             </div>
         </div>
+    </div>
+
+    <div id="masterpiece" class="doctor-grid">
+        <div class="doc-card">
+            <div class="doc-img" style="background-image: url('https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=400');"></div>
+            <div class="doc-info">
+                <div class="doc-name">Dr. Kosit E.</div>
+                <div class="doc-spec">Open Rhinoplasty Master</div>
+                <a href="#" class="btn-view-profile" onclick="openSlideOver('Dr. Kosit E.', 'Masterpiece Hospital')">Case Reviews</a>
+                <label class="select-doc"><input type="radio" name="d"> Select Specialist</label>
+            </div>
+        </div>
+    </div>
+
+    <div id="kamol" class="doctor-grid">
+        <div class="doc-card">
+            <div class="doc-img" style="background-image: url('https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=400');"></div>
+            <div class="doc-info">
+                <div class="doc-name">Dr. Kamol P.</div>
+                <div class="doc-spec">Global GRS & Facial Specialist</div>
+                <a href="#" class="btn-view-profile" onclick="openSlideOver('Dr. Kamol P.', 'Kamol Hospital')">Case Reviews</a>
+                <label class="select-doc"><input type="radio" name="d"> Select Specialist</label>
+            </div>
+        </div>
+    </div>
+
+    <div id="lelux" class="doctor-grid">
+        <div class="doc-card">
+            <div class="doc-img" style="background-image: url('https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=400');"></div>
+            <div class="doc-info">
+                <div class="doc-name">Dr. Kittisak V.</div>
+                <div class="doc-spec">Breast & Facial Specialist</div>
+                <a href="#" class="btn-view-profile" onclick="openSlideOver('Dr. Kittisak V.', 'Lelux Hospital')">Case Reviews</a>
+                <label class="select-doc"><input type="radio" name="d"> Select Specialist</label>
+            </div>
+        </div>
+    </div>
+
+    <div id="bangmod" class="doctor-grid">
+        <div class="doc-card">
+            <div class="doc-img" style="background-image: url('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=400');"></div>
+            <div class="doc-info">
+                <div class="doc-name">Dr. Thananchai A.</div>
+                <div class="doc-spec">Facelift & Plastic Surgeon</div>
+                <a href="#" class="btn-view-profile" onclick="openSlideOver('Dr. Thananchai A.', 'Bangmod Hospital')">Case Reviews</a>
+                <label class="select-doc"><input type="radio" name="d"> Select Specialist</label>
+            </div>
+        </div>
+    </div>
+
+    <div id="yanhee" class="doctor-grid">
+        <div class="doc-card">
+            <div class="doc-img" style="background-image: url('https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=400');"></div>
+            <div class="doc-info">
+                <div class="doc-name">Dr. Greechart P.</div>
+                <div class="doc-spec">Senior Plastic Surgeon</div>
+                <a href="#" class="btn-view-profile" onclick="openSlideOver('Dr. Greechart P.', 'Yanhee Hospital')">Case Reviews</a>
+                <label class="select-doc"><input type="radio" name="d"> Select Specialist</label>
+            </div>
+        </div>
+    </div>
+
+    <div id="wansiri" class="doctor-grid">
+        <div class="doc-card">
+            <div class="doc-img" style="background-image: url('https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=400');"></div>
+            <div class="doc-info">
+                <div class="doc-name">Dr. Saran W.</div>
+                <div class="doc-spec">Premium Reconstruction Master</div>
+                <a href="#" class="btn-view-profile" onclick="openSlideOver('Dr. Saran W.', 'Wansiri Hospital')">Case Reviews</a>
+                <label class="select-doc"><input type="radio" name="d"> Select Specialist</label>
+            </div>
+        </div>
+    </div>
+
+    <div id="meko" class="doctor-grid">
+        <div class="doc-card">
+            <div class="doc-img" style="background-image: url('https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=400');"></div>
+            <div class="doc-info">
+                <div class="doc-name">Dr. Manat C.</div>
+                <div class="doc-spec">Expert in Revision Nose & Eyes</div>
+                <a href="#" class="btn-view-profile" onclick="openSlideOver('Dr. Manat C.', 'Meko Clinic')">Case Reviews</a>
+                <label class="select-doc"><input type="radio" name="d"> Select Specialist</label>
+            </div>
+        </div>
+    </div>
+
+    <div id="nopparat" class="doctor-grid">
+        <div class="doc-card">
+            <div class="doc-img" style="background-image: url('https://images.unsplash.com/photo-1612349317150-e410f624c427?q=80&w=400');"></div>
+            <div class="doc-info">
+                <div class="doc-name">Dr. Nopparat R.</div>
+                <div class="doc-spec">Barbie Nose & Breast Specialist</div>
+                <a href="#" class="btn-view-profile" onclick="openSlideOver('Dr. Nopparat R.', 'Nopparat Clinic')">Case Reviews</a>
+                <label class="select-doc"><input type="radio" name="d"> Select Specialist</label>
+            </div>
+        </div>
+    </div>
+
+    <div id="goodview" class="doctor-grid">
+        <div class="doc-card">
+            <div class="doc-img" style="background-image: url('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=400');"></div>
+            <div class="doc-info">
+                <div class="doc-name">Dr. Peerachai G.</div>
+                <div class="doc-spec">Aesthetic & Skin Design</div>
+                <a href="#" class="btn-view-profile" onclick="openSlideOver('Dr. Peerachai G.', 'Goodview Clinic')">Case Reviews</a>
+                <label class="select-doc"><input type="radio" name="d"> Select Specialist</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-action">
+        <p>Proceed to customize your luxury concierge package.</p>
+        <a href="options.html" class="btn-next">Next: Customize Package ➔</a>
+    </div>
+</div>
     </div>
 
     <div class="slide-over-overlay" id="overlay" onclick="closeSlideOver()"></div>
     <div class="slide-over-panel" id="slidePanel">
         <span class="close-slide" onclick="closeSlideOver()">✕</span>
         <h2 id="slideDocName" style="margin-top: 40px; color: var(--primary-navy);">Doctor Name</h2>
-        <p id="slideHospName" style="color: var(--luxury-gold); font-weight: 600; margin-bottom: 20px;">Establishment Name</p>
+        <p id="slideHospName" style="color: var(--luxury-gold); font-weight: 600; margin-bottom: 20px;">Establishment</p>
         <div class="review-section">
-            <h3 style="font-size: 18px; margin-bottom: 15px;">Patient Reviews & Results</h3>
+            <h3 style="font-size: 18px; margin-bottom: 15px;">Verified Patient Results</h3>
             <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-                <div style="width: 150px; height: 150px; background: url('https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=300') center/cover; border-radius: 8px;"></div>
-                <div style="width: 150px; height: 150px; background: url('https://images.unsplash.com/photo-1581056771107-24ca5f033842?q=80&w=300') center/cover; border-radius: 8px;"></div>
+                <div style="width: 150px; height: 150px; background-color: #ddd; border-radius: 8px;"></div>
+                <div style="width: 150px; height: 150px; background-color: #ddd; border-radius: 8px;"></div>
             </div>
             <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; border-left: 4px solid var(--luxury-gold);">
-                "Perfect result! The AuraHub team and the doctor were very professional."
-                <br><br><strong>- Verified Patient from Cambodia 🇰🇭</strong>
+                "Truly life-changing experience. The concierge team was with me every step of the way."
+                <br><br><strong>- Verified Patient from UK 🇬🇧</strong>
             </div>
         </div>
     </div>
 
     <script>
-        // 1. ระบบจัดการเมนูมือถือ
         function toggleMobileMenu() {
-            var nav = document.getElementById("navLinks");
-            nav.classList.toggle("active");
+            document.getElementById("navLinks").classList.toggle("active");
         }
 
-        // 2. ระบบเช็คสถานะการเข้าสู่ระบบ + โชว์ปุ่ม Logout
         document.addEventListener("DOMContentLoaded", () => {
             const memberId = localStorage.getItem('auraHubMemberId');
             const memberInfoBox = document.getElementById('memberInfoDisplay');
-            
             if (memberId) {
                 memberInfoBox.style.width = "auto";
                 memberInfoBox.className = "member-info";
-                memberInfoBox.innerHTML = `
-                    <span>Member: <strong>${memberId}</strong></span>
-                    <span class="member-status">VIP</span>
-                    <button onclick="logout()" class="logout-btn">Logout</button>
-                `;
+                memberInfoBox.innerHTML = `<span>Member: <strong>${memberId}</strong></span><span class="member-status">VIP</span><button onclick="logout()" class="logout-btn">Logout</button>`;
             }
         });
 
-        // 3. ฟังก์ชัน Logout
         function logout() {
             localStorage.removeItem('auraHubMemberId');
             window.location.reload();
         }
 
-        // ระบบสลับ Hospital/Clinic
         function filterType(type, btn) {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
@@ -284,12 +347,10 @@
                 if (card.getAttribute('data-type') === type) card.classList.add('visible');
                 else card.classList.remove('visible', 'active');
             });
-            // คลิกรายการแรกโดยอัตโนมัติ
             const firstVisible = document.querySelector('.hospital-card.visible');
             if(firstVisible) firstVisible.click();
         }
 
-        // ระบบแสดงรายชื่อหมอตามสถานที่
         function showDoctors(id, card) {
             document.querySelectorAll('.hospital-card').forEach(c => c.classList.remove('active'));
             card.classList.add('active');
