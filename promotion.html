@@ -139,6 +139,13 @@
                 <li id="memberInfoDisplay" style="width: 100%;">
                     <a href="register.html" class="auth-btn">Login / Register</a>
                 </li>
+<select id="langSelector" onchange="changeLanguage(this.value)" style="padding: 5px; border-radius: 4px; border: 1px solid var(--luxury-gold); font-family: 'Montserrat'; font-size: 12px; margin-right: 15px; cursor: pointer;">
+    <option value="en">🇬🇧 English</option>
+    <option value="vi">🇻🇳 Vietnam</option>
+    <option value="my">🇲🇲 Myanmar</option>
+    <option value="km">🇰🇭 Cambodia</option>
+    <option value="lo">🇱🇦 Laos</option>
+</select>
             </ul>
         </div>
     </header>
@@ -261,6 +268,55 @@
             localStorage.removeItem('auraHubMemberId');
             window.location.reload();
         }
+let allTranslations = {};
+
+// 1. ฟังก์ชันดึงคำแปลจาก Google Sheets (ทำครั้งเดียวเมื่อเข้าเว็บ)
+async function fetchTranslations() {
+    // ถ้าเคยโหลดไว้แล้วในเครื่อง ให้ดึงจากเครื่องมาใช้เลยเพื่อความเร็ว
+    const cached = localStorage.getItem('auraHubTranslations');
+    if (cached) {
+        allTranslations = JSON.parse(cached);
+        applyLanguage(localStorage.getItem('auraHubLang') || 'en');
+        return;
+    }
+
+    try {
+        const response = await fetch(GAS_URL + "?action=getTranslations");
+        const result = await response.json();
+        if (result.status === "success") {
+            allTranslations = result.data;
+            localStorage.setItem('auraHubTranslations', JSON.stringify(allTranslations));
+            applyLanguage(localStorage.getItem('auraHubLang') || 'en');
+        }
+    } catch (error) {
+        console.error("Failed to fetch translations:", error);
+    }
+}
+
+// 2. ฟังก์ชันเปลี่ยนภาษา
+function changeLanguage(lang) {
+    localStorage.setItem('auraHubLang', lang);
+    applyLanguage(lang);
+}
+
+// 3. ฟังก์ชันสั่งให้ข้อความในหน้าเว็บเปลี่ยนตามภาษาที่เลือก
+function applyLanguage(lang) {
+    document.getElementById('langSelector').value = lang;
+    
+    // หาป้ายกำกับ data-i18n ทั้งหมดในหน้าเว็บ
+    const elements = document.querySelectorAll('[data-i18n]');
+    elements.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (allTranslations[lang] && allTranslations[lang][key]) {
+            el.innerText = allTranslations[lang][key];
+        }
+    });
+}
+
+// เรียกใช้งานเมื่อโหลดหน้าเว็บเสร็จ
+document.addEventListener("DOMContentLoaded", () => {
+    fetchTranslations();
+});
     </script>
 </body>
 </html>
