@@ -296,12 +296,14 @@
             </div>
             <p style="font-size: 10px; color: #888; text-align: right; margin-top: 5px;">*Procedure fees not included</p>
 
-            <button class="btn-checkout" onclick="alert('Booking Completed! Our concierge will contact you shortly.')">Complete Booking</button>
+            <button class="btn-checkout" id="bookingBtn" onclick="handleBooking()">Complete Booking</button>
         </div>
 
     </div>
 
     <script>
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbxVwQNS9mE4ngyIWGAmuiQbxVYm-f_qN86WJT-1JjHiOcCv1eYB5pHELEp2zGht9fEl/exec';
+
         // 1. ระบบเช็คสถานะการเข้าสู่ระบบ + โชว์ปุ่ม Logout
         document.addEventListener("DOMContentLoaded", () => {
             const memberId = localStorage.getItem('auraHubMemberId');
@@ -386,6 +388,48 @@
 
             document.getElementById('totalCost').innerText = `${totalOverall.toLocaleString()} THB`;
         }
+        // ฟังก์ชันสำหรับส่งข้อมูลการจองไปยัง Google Sheets
+function handleBooking() {
+    const btn = document.getElementById('bookingBtn');
+    const memberId = localStorage.getItem('auraHubMemberId') || 'GUEST';
+    const totalCost = document.getElementById('totalCost').innerText;
+    const carDays = document.getElementById('carDays').value;
+
+    // เปลี่ยนข้อความปุ่มเพื่อบอกสถานะกำลังส่ง
+    btn.innerText = 'Processing...';
+    btn.disabled = true;
+
+    const formData = new FormData();
+    // ต้องตรงกับที่ตั้งไว้ใน GAS: action === "Complete Booking"
+    formData.append('action', 'Complete Booking'); 
+    formData.append('memberId', memberId);
+    formData.append('hotel', currentHotelName);
+    formData.append('car', currentCarName);
+    formData.append('carDays', carDays);
+    formData.append('totalCost', totalCost);
+
+    fetch(GAS_URL, {
+        method: 'POST',
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === 'success') {
+            alert('Booking Completed! Our concierge will contact you shortly.');
+            window.location.href = "index.html"; // เมื่อสำเร็จให้กลับไปหน้าแรก
+        } else {
+            alert('Error: ' + data.message);
+            btn.innerText = 'Complete Booking';
+            btn.disabled = false;
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Connection error. Please try again.');
+        btn.innerText = 'Complete Booking';
+        btn.disabled = false;
+    });
+}
     </script>
 </body>
 </html>
