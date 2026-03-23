@@ -234,7 +234,7 @@
 
     <header>
         <div class="navbar">
-            <a href="index.html" class="logo-container">
+            <a href="#" data-i18n="#" data-i18n="index.html" class="logo-container">
                 <img src="image_c8fa02.jpg" alt="AuraHub Logo" class="logo-img">
                 <span class="logo-text">AuraHub</span>
             </a>
@@ -242,26 +242,20 @@
             <div class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</div>
 
             <ul class="nav-links" id="navLinks">
-                <li><a href="promotion.html" onclick="trackAndGo(event, 'NAV_PROMO', 'promotion.html')">Promotions</a></li>
-                <li><a href="register.html" style="color: var(--luxury-gold); font-weight: 700;">AI Aesthetic <span class="ai-badge">MEMBER ONLY</span></a></li>
-                <li><a href="#join">Join Us</a></li>
+                <li><a href="#" data-i18n="#" data-i18n="promotion.html" onclick="trackAndGo(event, 'NAV_PROMO', 'promotion.html')">Promotions</a></li>
+                <li><a href="#" data-i18n="#" data-i18n="register.html" style="color: var(--luxury-gold); font-weight: 700;">AI Aesthetic <span class="ai-badge">MEMBER ONLY</span></a></li>
+                <li><a href="#" data-i18n="#" data-i18n="#join">Join Us</a></li>
                 <li id="memberInfoDisplay" style="width: 100%;">
-                    <a href="register.html" class="auth-btn">Login / Register</a>
+                    <a href="#" data-i18n="#" data-i18n="register.html" class="auth-btn">Login / Register</a>
                 </li>
-<select id="langSelector" onchange="changeLanguage(this.value)" style="padding: 5px; border-radius: 4px; border: 1px solid var(--luxury-gold); font-family: 'Montserrat'; font-size: 12px; margin-right: 15px; cursor: pointer;">
-    <option value="en">🇬🇧 English</option>
-    <option value="vi">🇻🇳 Vietnam</option>
-    <option value="my">🇲🇲 Myanmar</option>
-    <option value="km">🇰🇭 Cambodia</option>
-    <option value="lo">🇱🇦 Laos</option>
-</select>
+<div id="google_translate_element" style="margin-right: 15px; padding-top: 5px;"></div>
             </ul>
         </div>
     </header>
 
     <section class="hero">
-        <h1>Your Journey to Perfection</h1>
-        <p>Premium Medical Concierge in Thailand. We connect you with world-class surgeons and handle every detail of your luxury medical travel.</p>
+        <h1 data-i18n="hero_title">Your Journey to Perfection</h1>
+        <p data-i18n="hero_desc">Premium Medical Concierge in Thailand. We connect you with world-class surgeons and handle every detail of your luxury medical travel.</p>
     </section>
 
     <section class="selection-section">
@@ -280,32 +274,32 @@
                 <div class="select-grid">
                     <div class="select-group">
                         <div class="group-title">Facial Surgery</div>
-                        <a href="search.html" class="btn-item" onclick="trackAndGo(event, 'F1', 'search.html')">› Rhinoplasty (Nose)</a>
-                        <a href="search.html" class="btn-item" onclick="trackAndGo(event, 'F2', 'search.html')">› Blepharoplasty (Eyes)</a>
-                        <a href="search.html" class="btn-item" onclick="trackAndGo(event, 'F3', 'search.html')">› Facelift</a>
-                        <a href="search.html" class="btn-item" onclick="trackAndGo(event, 'F4', 'search.html')">› Facial Contouring</a>
+                        <a href="#" data-i18n="#" data-i18n="search.html" class="btn-item" onclick="trackAndGo(event, 'F1', 'search.html')">› Rhinoplasty (Nose)</a>
+                        <a href="#" data-i18n="#" data-i18n="search.html" class="btn-item" onclick="trackAndGo(event, 'F2', 'search.html')">› Blepharoplasty (Eyes)</a>
+                        <a href="#" data-i18n="#" data-i18n="search.html" class="btn-item" onclick="trackAndGo(event, 'F3', 'search.html')">› Facelift</a>
+                        <a href="#" data-i18n="#" data-i18n="search.html" class="btn-item" onclick="trackAndGo(event, 'F4', 'search.html')">› Facial Contouring</a>
                     </div>
                     
                     <div class="select-group">
                         <div class="group-title">Body Surgery</div>
-                        <a href="search.html" class="btn-item" onclick="trackAndGo(event, 'B1', 'search.html')">› Breast Augmentation</a>
-                        <a href="search.html" class="btn-item" onclick="trackAndGo(event, 'B2', 'search.html')">› Liposuction</a>
-                        <a href="search.html" class="btn-item" onclick="trackAndGo(event, 'B3', 'search.html')">› Tummy Tuck</a>
-                        <a href="search.html" class="btn-item" onclick="trackAndGo(event, 'B4', 'search.html')">› Buttock Augmentation</a>
+                        <a href="#" data-i18n="#" data-i18n="search.html" class="btn-item" onclick="trackAndGo(event, 'B1', 'search.html')">› Breast Augmentation</a>
+                        <a href="#" data-i18n="#" data-i18n="search.html" class="btn-item" onclick="trackAndGo(event, 'B2', 'search.html')">› Liposuction</a>
+                        <a href="#" data-i18n="#" data-i18n="search.html" class="btn-item" onclick="trackAndGo(event, 'B3', 'search.html')">› Tummy Tuck</a>
+                        <a href="#" data-i18n="#" data-i18n="search.html" class="btn-item" onclick="trackAndGo(event, 'B4', 'search.html')">› Buttock Augmentation</a>
                     </div>
 
                     <div class="select-group">
                         <div class="group-title">Anti-Aging & Skin</div>
-                        <a href="search.html" class="btn-item" onclick="trackAndGo(event, 'A1', 'search.html')">› Thermage / Ultherapy</a>
-                        <a href="search.html" class="btn-item" onclick="trackAndGo(event, 'A2', 'search.html')">› Stem Cell Therapy</a>
-                        <a href="search.html" class="btn-item" onclick="trackAndGo(event, 'A3', 'search.html')">› Premium Injections</a>
+                        <a href="#" data-i18n="#" data-i18n="search.html" class="btn-item" onclick="trackAndGo(event, 'A1', 'search.html')">› Thermage / Ultherapy</a>
+                        <a href="#" data-i18n="#" data-i18n="search.html" class="btn-item" onclick="trackAndGo(event, 'A2', 'search.html')">› Stem Cell Therapy</a>
+                        <a href="#" data-i18n="#" data-i18n="search.html" class="btn-item" onclick="trackAndGo(event, 'A3', 'search.html')">› Premium Injections</a>
                     </div>
 
                     <div class="select-group">
                         <div class="group-title">Specialized</div>
-                        <a href="search.html" class="btn-item" onclick="trackAndGo(event, 'S1', 'search.html')">› Revision Surgery</a>
-                        <a href="search.html" class="btn-item" onclick="trackAndGo(event, 'S2', 'search.html')">› Gender Affirmation</a>
-                        <a href="search.html" class="btn-item" onclick="trackAndGo(event, 'S3', 'search.html')">› Hair Transplantation</a>
+                        <a href="#" data-i18n="#" data-i18n="search.html" class="btn-item" onclick="trackAndGo(event, 'S1', 'search.html')">› Revision Surgery</a>
+                        <a href="#" data-i18n="#" data-i18n="search.html" class="btn-item" onclick="trackAndGo(event, 'S2', 'search.html')">› Gender Affirmation</a>
+                        <a href="#" data-i18n="#" data-i18n="search.html" class="btn-item" onclick="trackAndGo(event, 'S3', 'search.html')">› Hair Transplantation</a>
                     </div>
                 </div>
             </div>
@@ -368,55 +362,17 @@
             localStorage.removeItem('auraHubMemberId');
             window.location.reload();
         }
-let allTranslations = {};
 
-// 1. ฟังก์ชันดึงคำแปลจาก Google Sheets (ทำครั้งเดียวเมื่อเข้าเว็บ)
-async function fetchTranslations() {
-    // ถ้าเคยโหลดไว้แล้วในเครื่อง ให้ดึงจากเครื่องมาใช้เลยเพื่อความเร็ว
-    const cached = localStorage.getItem('auraHubTranslations');
-    if (cached) {
-        allTranslations = JSON.parse(cached);
-        applyLanguage(localStorage.getItem('auraHubLang') || 'en');
-        return;
-    }
-
-    try {
-        const response = await fetch(GAS_URL + "?action=getTranslations");
-        const result = await response.json();
-        if (result.status === "success") {
-            allTranslations = result.data;
-            localStorage.setItem('auraHubTranslations', JSON.stringify(allTranslations));
-            applyLanguage(localStorage.getItem('auraHubLang') || 'en');
-        }
-    } catch (error) {
-        console.error("Failed to fetch translations:", error);
-    }
-}
-
-// 2. ฟังก์ชันเปลี่ยนภาษา
-function changeLanguage(lang) {
-    localStorage.setItem('auraHubLang', lang);
-    applyLanguage(lang);
-}
-
-// 3. ฟังก์ชันสั่งให้ข้อความในหน้าเว็บเปลี่ยนตามภาษาที่เลือก
-function applyLanguage(lang) {
-    document.getElementById('langSelector').value = lang;
-    
-    // หาป้ายกำกับ data-i18n ทั้งหมดในหน้าเว็บ
-    const elements = document.querySelectorAll('[data-i18n]');
-    elements.forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (allTranslations[lang] && allTranslations[lang][key]) {
-            el.innerText = allTranslations[lang][key];
-        }
-    });
-}
-
-// เรียกใช้งานเมื่อโหลดหน้าเว็บเสร็จ
-document.addEventListener("DOMContentLoaded", () => {
-    fetchTranslations();
-});
     </script>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'en', 
+            includedLanguages: 'en,vi,my,km,lo', /* English, Vietnam, Myanmar, Cambodia, Laos */
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element');
+    }
+</script>
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
